@@ -1,0 +1,21 @@
+<div class="container">
+  <h1>Vos annonces</h1>
+  <hr>
+  <% @annonces_user.each do |annonce| %>
+    <div class="product">
+      <div class='product-upvote'>
+      </div>
+      <img src="<%= annonce.photo %>" alt="kudoz" class="product-image hidden-xs">
+      <div class='product-body'>
+        <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+        <p><%= annonce.description %></p>
+      </div>
+      <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+        <li><a title="Si votre annonce est en attente cela veux dire qu'elle est en cours de vérification par notre staff et sera bientot disponible sur le site, si votre annonce est refusé et que vous pensez qu'il s'agit d'une erreur merci de contacter une personne du staff.">Status: <%= @status_list[annonce.status] %></a></li>
+        <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+        <li><%= link_to "",  edit_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+        <li><%= link_to "", annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+      </ul>
+    </div>
+  <% end %>
+</div>

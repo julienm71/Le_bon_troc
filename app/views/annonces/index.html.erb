@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="flex">
+    <h1><%= @annonces_page_title %> (<%= @annonces_count %>)</h1>
+<!--     <div class="filters-annonces">
+      <div class="btn-group" style="margin-top:25px;">
+        <button type="button" class="btn btn-primary">Filtres</button>
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span class="caret"></span>
+          <span class="sr-only">Toggle Dropdown</span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Les plus récente en premier", annonces_path, controller: :annonces_controller, action: :filtre_recent %></li>
+          <li role="separator" class="divider"></li>
+          <li><%= link_to "Les plus vieille en premier", annonces_path, controller: :annonces_controllers, action: :filtre_vieux %></li>
+        </ul>
+      </div>
+    </div> -->
+  </div>
+  <hr>
+  <% @annonces.each do |annonce| %>
+    <div class="product">
+      <div class='product-upvote'>
+      </div>
+      <img src="<%= annonce.photo %>" alt="kudoz" class="product-image hidden-xs">
+      <div class='product-body'>
+        <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+        <p><%= annonce.description.first(26) %></p>
+        <br />
+        <% if annonce.autrepropositions %>
+        <p><a>Cette personne est libre à d'autre propositions</a></p>
+        <% end %>
+      </div>
+      <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+        <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+        <li><a>Posté par <%= annonce.user.pseudo %> le <%= annonce.created_at.strftime("%d %B, %Y") %></a></li>
+      </ul>
+    </div>
+  <% end %>
+</div>

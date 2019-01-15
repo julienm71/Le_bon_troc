@@ -1,0 +1,18 @@
+development:
+  cloud_name: dbhchqzna
+  api_key: '415118816427715'
+  api_secret: SfDmCV16j2b4meucRV7d15bcVQI
+  enhance_image_tag: true
+  static_file_support: false
+production:
+  cloud_name: dbhchqzna
+  api_key: '415118816427715'
+  api_secret: SfDmCV16j2b4meucRV7d15bcVQI
+  enhance_image_tag: true
+  static_file_support: true
+test:
+  cloud_name: dbhchqzna
+  api_key: '415118816427715'
+  api_secret: SfDmCV16j2b4meucRV7d15bcVQI
+  enhance_image_tag: true
+  static_file_support: false

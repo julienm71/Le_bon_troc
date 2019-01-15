@@ -1,2 +1,118 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="content-home">
+  <div class="banner" style="background-image: url('https://images.pexels.com/photos/842339/pexels-photo-842339.jpeg?auto=compress&cs=tinysrgb');">
+    <div class="banner-content">
+      <h1></h1>
+      <p></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-4"></div>
+          <div class="col-4">
+            <%= simple_form_for :search, url: annonces_path, method: :get,
+            wrapper: :horizontal_form do |f| %>
+            <div class="form-group">
+              <%= f.input :produit, required: true, autofocus: true, label: false, placeholder: 'Produit ?' %>
+            </div>
+            <div class="form-group">
+              <%= f.input :where, collection: {"Voir les annonces pour ce produit" => 1, "Voir les offres pour un produit que vous voulez échanger" => 2}, label:false, required: true %>
+            </div>
+            <div class="form-group">
+              <%= f.button :submit, "Rechercher", class: 'btn btn-primary'%>
+            </div>
+            <% end %>
+          </div>
+          <div class="col-4"></div>
+      </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-4"></div>
+      <div class="col-4 text-center"><a href="#description"><i class="fa fa-angle-down arrow faa-fast faa-float animated"></i></a></div>
+      <div class="col-4"></div>
+    </div>
+  </div>
+  <div class="container" id="description">
+    <h1 class="text-center">Les dernières annonces</h1>
+    <hr>
+    <% @annonces.each do |annonce| %>
+      <div class="product">
+        <div class='product-upvote'>
+        </div>
+        <img src="<%= annonce.photo %>" alt="kudoz" class="product-image hidden-xs">
+        <div class='product-body'>
+          <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+          <p><%= annonce.description.first(26) %></p>
+          <br />
+          <% if annonce.autrepropositions %>
+          <p><a>Cette personne est libre à d'autre propositions</a></p>
+          <% end %>
+        </div>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+          <li><a>Posté par <%= annonce.user.pseudo %></a></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="container-fluid">
+    <h1 class="text-center">Comment ça marche ?</h1>
+    <hr>
+  <!--   <ul id="progressbar">
+      <li class="active">Chercher</li>
+      <li class="active">Contacter</li>
+      <li class="active">Echanger</li>
+    </ul> -->
+  </div>
+
+  <div class="container-fluid">
+    <div class="card-container flex-home">
+
+      <div class="card-home">
+        <div class="front">
+          <h2 class="sub-title"><i class="fa fa-search"></i> Rechercher</h2>
+          <h1 class="title">
+            Search for the city you want to rent a place in
+          </h1>
+          <%= image_tag "search.jpg", class: "image" %>
+        </div>
+        <div class="back">
+          <h3 class="synopsis">Description</h3>
+          <p>Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
+            between domestic family life and interdimensional travel.</p>
+        </div>
+      </div>
+
+      <div class="card-home">
+        <div class="front">
+          <h2 class="sub-title"><i class="fa fa-check-circle"></i> Contacter</h2>
+          <h1 class="title">
+            Select the best place for your event
+          </h1>
+          <%= image_tag "select.jpg", class: "image" %>
+        </div>
+        <div class="back">
+          <h3 class="synopsis">Description</h3>
+          <p>Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
+            between domestic family life and interdimensional travel.</p>
+        </div>
+      </div>
+
+      <div class="card-home">
+        <div class="front">
+          <h2 class="sub-title"><i class="fa fa-calendar"></i> Echanger</h2>
+          <h1 class="title">
+            Takes only a few seconds to book !
+          </h1>
+          <%= image_tag "book.jpg", class: "image" %>
+        </div>
+        <div class="back">
+          <h3 class="synopsis">Description</h3>
+          <p>Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
+            between domestic family life and interdimensional travel.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

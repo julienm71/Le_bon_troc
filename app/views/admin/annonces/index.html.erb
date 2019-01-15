@@ -1,0 +1,210 @@
+<div class="container">
+  <h1 style="text-align:center;">A D M I N - P A N E L</h1>
+  <hr>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-toutes-tab" data-toggle="tab" href="#nav-toutes" role="tab" aria-controls="nav-toutes" aria-selected="true">Toutes les annonces</a>
+    <a class="nav-item nav-link" id="nav-attente-tab" data-toggle="tab" href="#nav-attente" role="tab" aria-controls="nav-attente" aria-selected="false">Annonces en attente</a>
+    <a class="nav-item nav-link" id="nav-accepte-tab" data-toggle="tab" href="#nav-accepte" role="tab" aria-controls="nav-accepte" aria-selected="false">Annonces accepté</a>
+    <a class="nav-item nav-link" id="nav-refuse-tab" data-toggle="tab" href="#nav-refuse" role="tab" aria-controls="nav-refuse" aria-selected="false">Annonces refusé</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-toutes" role="tabpanel" aria-labelledby="nav-toutes-tab">
+    <% @annonces.each do |annonce| %>
+      <div class="product">
+        <div class='product-upvote'>
+      </div>
+        <img src="<%= annonce.photo %>" alt="img" class="product-image hidden-xs">
+        <div class='product-body'>
+          <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+          <p><%= annonce.description.first(26) %></p>
+          <br />
+          <p><a>Status: <%= @status_list[annonce.status] %></a></p>
+        </div>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+          <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+          <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+          <li><%= link_to "", admin_annonce_path(annonce, status: 2), method: :patch, title: "Accepter l'annonce", data: { confirm: "Etes vous sur de vouloir accepter et publier cette annonce ?" }, :class => "far fa-check"%></li>
+          <li><%= link_to "", admin_annonce_path(annonce, status: 0), method: :patch, title: "Mettre l'annonce en attente", data: { confirm: "Etes vous sur de vouloir mettre cette annonce en attente ?" }, :class => "far fa-clock"%></li>
+          <li><%= link_to "", admin_annonce_path(annonce, status: 1), method: :patch, title: "Refuser l'annonce", data: { confirm: "Etes vous sur de vouloir refuser cette annonce ?" }, :class => "far fa-times"%></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="nav-attente" role="tabpanel" aria-labelledby="nav-attente-tab">
+    <% @annonces_en_attente.each do |annonce| %>
+      <div class="product">
+        <div class='product-upvote'>
+        </div>
+        <img src="<%= annonce.photo %>" alt="img" class="product-image hidden-xs">
+        <div class='product-body'>
+          <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+          <p><%= annonce.description.first(26) %></p>
+          <br />
+          <p><a>Status: <%= @status_list[annonce.status] %></a></p>
+        </div>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+          <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+          <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+          <li><%= link_to "", admin_annonce_path(annonce, status: 2), method: :patch, title: "Accepter l'annonce", data: { confirm: "Etes vous sur de vouloir accepter et publier cette annonce ?" }, :class => "far fa-check"%></li>
+          <li><%= link_to "", admin_annonce_path(annonce, status: 1), method: :patch, title: "Refuser l'annonce", data: { confirm: "Etes vous sur de vouloir refuser cette annonce ?" }, :class => "far fa-times"%></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="nav-accepte" role="tabpanel" aria-labelledby="nav-contact-tab">
+    <% @annonces_accepte.each do |annonce| %>
+      <div class="product">
+        <div class='product-upvote'>
+        </div>
+        <img src="<%= annonce.photo %>" alt="img" class="product-image hidden-xs">
+        <div class='product-body'>
+          <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+          <p><%= annonce.description.first(26) %></p>
+          <br />
+          <p><a>Status: <%= @status_list[annonce.status] %></a></p>
+        </div>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+          <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+          <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+          <li><%= link_to "", admin_annonce_path(annonce, status: 0), method: :patch, title: "Mettre l'annonce en attente", data: { confirm: "Etes vous sur de vouloir mettre cette annonce en attente ?" }, :class => "far fa-clock"%></li>
+          <li><%= link_to "", admin_annonce_path(annonce, status: 1), method: :patch, title: "Refuser l'annonce", data: { confirm: "Etes vous sur de vouloir refuser cette annonce ?" }, :class => "far fa-times"%></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <div class="tab-pane fade" id="nav-refuse" role="tabpanel" aria-labelledby="nav-contact-tab">
+    <% @annonces_refuse.each do |annonce| %>
+      <div class="product">
+        <div class='product-upvote'>
+        </div>
+        <img src="<%= annonce.photo %>" alt="img" class="product-image hidden-xs">
+        <div class='product-body'>
+          <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+          <p><%= annonce.description.first(26) %></p>
+          <br />
+          <p><a>Status: <%= @status_list[annonce.status] %></a></p>
+        </div>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+          <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+          <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+          <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+          <li><%= link_to "", admin_annonce_path(annonce, status: 0), method: :patch, title: "Mettre l'annonce en attente", data: { confirm: "Etes vous sur de vouloir mettre cette annonce en attente ?" }, :class => "far fa-clock"%></li>
+          <li><%= link_to "", admin_annonce_path(annonce, status: 2), method: :patch, title: "Accepter l'annonce", data: { confirm: "Etes vous sur de vouloir accepter et publier cette annonce ?" }, :class => "far fa-check"%></li>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+
+<!-- <div class="container">
+  <h3 style="text-align:center;">A D M I N - P A N E L</h3>
+  <hr>
+   <div class="row">
+    <div class="col-xs-12 col-md-10-offset-2 col-lg-8-offset-4">
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#toutes" aria-controls="toutes" role="tab" data-toggle="tab">Toutes les annonces</a></li>
+        <li role="presentation"><a href="#attente" id="admin-panel-bug-fix" aria-controls="attente" role="tab" data-toggle="tab">Annonces en attente</a></li>
+        <li role="presentation"><a href="#accepte" aria-controls="accepte" role="tab" data-toggle="tab">Annonces accepté</a></li>
+        <li role="presentation"><a href="#refuse" aria-controls="refuse" role="tab" data-toggle="tab">Annonces refusé</a></li>
+      </ul>
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="toutes">
+          <% @annonces.each do |annonce| %>
+            <div class="product">
+              <div class='product-upvote'>
+              </div>
+              <img src="<%= annonce.photo %>" alt="img" class="product-image hidden-xs">
+              <div class='product-body'>
+                <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+                <p><%= annonce.description.first(26) %></p>
+                <br />
+                <p><a>Status: <%= @status_list[annonce.status] %></a></p>
+              </div>
+              <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+                <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+                <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+                <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+                <li><%= link_to "", admin_annonce_path(annonce, status: 2), method: :patch, title: "Accepter l'annonce", data: { confirm: "Etes vous sur de vouloir accepter et publier cette annonce ?" }, :class => "far fa-check"%></li>
+                <li><%= link_to "", admin_annonce_path(annonce, status: 0), method: :patch, title: "Mettre l'annonce en attente", data: { confirm: "Etes vous sur de vouloir mettre cette annonce en attente ?" }, :class => "far fa-clock"%></li>
+                <li><%= link_to "", admin_annonce_path(annonce, status: 1), method: :patch, title: "Refuser l'annonce", data: { confirm: "Etes vous sur de vouloir refuser cette annonce ?" }, :class => "far fa-times"%></li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="attente">
+          <% @annonces_en_attente.each do |annonce| %>
+            <div class="product">
+              <div class='product-upvote'>
+              </div>
+              <img src="<%= annonce.photo %>" alt="img" class="product-image hidden-xs">
+              <div class='product-body'>
+                <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+                <p><%= annonce.description.first(26) %></p>
+                <br />
+                <p><a>Status: <%= @status_list[annonce.status] %></a></p>
+              </div>
+              <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+                <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+                <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+                <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+                <li><%= link_to "", admin_annonce_path(annonce, status: 2), method: :patch, title: "Accepter l'annonce", data: { confirm: "Etes vous sur de vouloir accepter et publier cette annonce ?" }, :class => "far fa-check"%></li>
+                <li><%= link_to "", admin_annonce_path(annonce, status: 1), method: :patch, title: "Refuser l'annonce", data: { confirm: "Etes vous sur de vouloir refuser cette annonce ?" }, :class => "far fa-times"%></li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="accepte">
+          <% @annonces_accepte.each do |annonce| %>
+            <div class="product">
+              <div class='product-upvote'>
+              </div>
+              <img src="<%= annonce.photo %>" alt="img" class="product-image hidden-xs">
+              <div class='product-body'>
+                <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+                <p><%= annonce.description.first(26) %></p>
+                <br />
+                <p><a>Status: <%= @status_list[annonce.status] %></a></p>
+              </div>
+              <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+                <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+                <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+                <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+                <li><%= link_to "", admin_annonce_path(annonce, status: 0), method: :patch, title: "Mettre l'annonce en attente", data: { confirm: "Etes vous sur de vouloir mettre cette annonce en attente ?" }, :class => "far fa-clock"%></li>
+                <li><%= link_to "", admin_annonce_path(annonce, status: 1), method: :patch, title: "Refuser l'annonce", data: { confirm: "Etes vous sur de vouloir refuser cette annonce ?" }, :class => "far fa-times"%></li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+        <div role="tabpanel" class="tab-pane active" id="refuse">
+          <% @annonces_refuse.each do |annonce| %>
+            <div class="product">
+              <div class='product-upvote'>
+              </div>
+              <img src="<%= annonce.photo %>" alt="img" class="product-image hidden-xs">
+              <div class='product-body'>
+                <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+                <p><%= annonce.description.first(26) %></p>
+                <br />
+                <p><a>Status: <%= @status_list[annonce.status] %></a></p>
+              </div>
+              <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+                <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+                <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+                <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+                <li><%= link_to "", admin_annonce_path(annonce, status: 0), method: :patch, title: "Mettre l'annonce en attente", data: { confirm: "Etes vous sur de vouloir mettre cette annonce en attente ?" }, :class => "far fa-clock"%></li>
+                <li><%= link_to "", admin_annonce_path(annonce, status: 2), method: :patch, title: "Accepter l'annonce", data: { confirm: "Etes vous sur de vouloir accepter et publier cette annonce ?" }, :class => "far fa-check"%></li>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+ -->

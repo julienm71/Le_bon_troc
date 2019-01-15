@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
+
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Raleway', Arial, sans-serif !important;
+}
+.content {
+  min-height: calc(100vh - 170px);
+}
+
+h1, h2, h3 { margin-top: 20px;}
+
+.container {
+  margin-bottom: 20px;
+}
+
+.container h1 {
+  font-size:35px;
+}
+
+.container-fluid h1 {
+  font-size:35px;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex h1 {
+  margin-bottom:0px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.arrow {
+  bottom:0;
+  position:absolute;
+  font-size:60px;
+  color:white;
+}

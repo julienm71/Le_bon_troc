@@ -1,0 +1,27 @@
+<div class="container">
+  <h1><%= @annonce.titre %> contre <%= @annonce.contre %></h1>
+  <hr>
+    <div class="product">
+      <div class='product-upvote'>
+      </div>
+      <img src="<%= @annonce.photo %>" alt="kudoz" class="product-image d-none d-sm-block">
+      <div class='product-body'>
+        <p>Posté par <%= @annonce.user.pseudo %>.</p>
+      </div>
+<!--       <ul class="list-inline product-controls product-controls-hidden d-none d-sm-block">
+        <% if @annonce.autrepropositions %>
+        <li><%= link_to "Proposer un autre objet en échange", annonces_path, class: 'btn btn-primary', style: 'color: white; font-size: 18px;' %></li>
+        <% end %>
+        <li><%= link_to "Contacter la personne", annonces_path, class: 'btn btn-primary', style: 'color: white; font-size: 18px;' %></li>
+      </ul> -->
+    </div>
+    <hr>
+    <h1>Description</h1>
+    <p> - <%= @annonce.description %></p>
+    <hr>
+    <h1>Raison(s)</h1>
+    <p> - <%= @annonce.raison %></p>
+    <hr>
+    <%= link_to "Proposer un autre objet en échange", annonces_path, class: 'btn btn-primary' %>
+    <%= link_to "Contacter la personne", annonces_path, class: 'btn btn-primary' %>
+</div>
