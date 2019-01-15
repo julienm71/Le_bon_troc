@@ -4,24 +4,23 @@
       <h1></h1>
       <p></p>
       <div class="container">
-        <div class="row">
-          <div class="col-4"></div>
-          <div class="col-4">
-            <%= simple_form_for :search, url: annonces_path, method: :get,
-            wrapper: :horizontal_form do |f| %>
-            <div class="form-group">
-              <%= f.input :produit, required: true, autofocus: true, label: false, placeholder: 'Produit ?' %>
-            </div>
-            <div class="form-group">
+        <!-- <div class="row"> -->
+          <!-- <div class="col-4"></div> -->
+          <!-- <div class="col-4"> -->
+            <%= simple_form_for :search, url: annonces_path, method: :get, class: 'form-inline' do |f| %>
+            <!-- <div class="form-row align-items-center"> -->
+
+                <%= f.input :produit, required: true, autofocus: true, label: false, placeholder: 'Produit ?' %>
+
+
               <%= f.input :where, collection: {"Voir les annonces pour ce produit" => 1, "Voir les offres pour un produit que vous voulez échanger" => 2}, label:false, required: true %>
-            </div>
-            <div class="form-group">
-              <%= f.button :submit, "Rechercher", class: 'btn btn-primary'%>
-            </div>
+
+            <!-- </div> -->
+              <%= f.button :submit, "Rechercher", class: 'btn btn-primary', style: 'width:100%'%>
             <% end %>
-          </div>
-          <div class="col-4"></div>
-      </div>
+          <!-- </div> -->
+          <!-- <div class="col-4"></div> -->
+      <!-- </div> -->
       </div>
     </div>
   </div>
