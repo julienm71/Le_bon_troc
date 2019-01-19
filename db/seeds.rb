@@ -40,6 +40,8 @@ annonceadmin = Annonce.new(
   raison: 'Je n\'aime pas les Iphone..',
   contre: 'Samsung S9',
   autrepropositions: true,
+  status: 2,
+  typeechange: 0,
   user: useradmin,
 )
 annonceadmin.remote_photo_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
@@ -51,6 +53,8 @@ annoncetest = Annonce.new(
   raison: 'Je n\'aime pas les Iphone..',
   contre: 'HTC One plus 6T',
   autrepropositions: true,
+  status: 2,
+  typeechange: 2,
   user: usertest,
 )
 annoncetest.remote_photo_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"

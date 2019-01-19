@@ -53,7 +53,7 @@ class AnnoncesController < ApplicationController
     @annonce = Annonce.find(params[:id])
     if @annonce.user == current_user
     else
-    flash[:alert] = "Vous ne pouvez pas modifier cette annonce."
+    flash[:alert] = "Vous ne pouvez pas modifier cette annonce.".html_safe
     redirect_to vos_annonces_path
     end
   end
@@ -96,6 +96,7 @@ class AnnoncesController < ApplicationController
   end
 
   def show
+    @typeechange_list = ["Seulement remise en main propre.", "Seulement envoie par la poste.", "Remise en main propre ou envoie par la poste."]
     @annonce = Annonce.find(params[:id])
   end
 
@@ -106,6 +107,6 @@ class AnnoncesController < ApplicationController
   end
 
   def annonce_params
-    params.require(:annonce).permit(:titre, :description, :contre, :user_id, :autrepropositions, :raison, :photo)
+    params.require(:annonce).permit(:titre, :description, :contre, :user_id, :autrepropositions, :raison, :photo, :typeechange)
   end
 end

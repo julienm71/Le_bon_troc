@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600');
-
+$main-text-color: rgb(72, 72, 72);
 
 html {
     scroll-behavior: smooth;
@@ -7,6 +7,8 @@ html {
 
 body {
     font-family: 'Raleway', Arial, sans-serif !important;
+    padding-right: 0 !important;
+    color: $main-text-color;
 }
 .content {
   min-height: calc(100vh - 170px);
@@ -45,4 +47,13 @@ h1, h2, h3 { margin-top: 20px;}
   position:absolute;
   font-size:60px;
   color:white;
+}
+
+.standard-hover-shadow {
+  transition: all 0.5s ease-in-out;
+}
+
+.standard-hover-shadow:hover {
+  box-shadow: 0 0px 5px rgba(0, 0, 0, 0.45);
+  transition: all 0.5s ease-in-out;
 }

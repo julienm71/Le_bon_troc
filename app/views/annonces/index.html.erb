@@ -1,6 +1,6 @@
 <div class="container">
   <div class="flex">
-    <h1><%= @annonces_page_title %> (<%= @annonces_count %>)</h1>
+    <h3><%= @annonces_page_title %> (<%= @annonces_count %>)</h3>
 <!--     <div class="filters-annonces">
       <div class="btn-group" style="margin-top:25px;">
         <button type="button" class="btn btn-primary">Filtres</button>
@@ -24,7 +24,7 @@
       <img src="<%= annonce.photo %>" alt="kudoz" class="product-image hidden-xs">
       <div class='product-body'>
         <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
-        <p><%= annonce.description.first(26) %></p>
+        <p><%= annonce.description.first(20) %>...</p>
         <br />
         <% if annonce.autrepropositions %>
         <p><a>Cette personne est libre à d'autre propositions</a></p>
@@ -36,4 +36,5 @@
       </ul>
     </div>
   <% end %>
+
 </div>

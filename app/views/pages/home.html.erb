@@ -1,115 +1,68 @@
 <div class="content-home">
-  <div class="banner" style="background-image: url('https://images.pexels.com/photos/842339/pexels-photo-842339.jpeg?auto=compress&cs=tinysrgb');">
+  <div class="banner" style="background-image: url('/assets/banner-home.jpg');">
     <div class="banner-content">
-      <h1></h1>
-      <p></p>
+<!-- <h3><span id="home-search-text"></span></h3> -->
       <div class="container">
-        <!-- <div class="row"> -->
-          <!-- <div class="col-4"></div> -->
-          <!-- <div class="col-4"> -->
-            <%= simple_form_for :search, url: annonces_path, method: :get, class: 'form-inline' do |f| %>
-            <!-- <div class="form-row align-items-center"> -->
-
-                <%= f.input :produit, required: true, autofocus: true, label: false, placeholder: 'Produit ?' %>
-
-
-              <%= f.input :where, collection: {"Voir les annonces pour ce produit" => 1, "Voir les offres pour un produit que vous voulez échanger" => 2}, label:false, required: true %>
-
-            <!-- </div> -->
-              <%= f.button :submit, "Rechercher", class: 'btn btn-primary', style: 'width:100%'%>
-            <% end %>
-          <!-- </div> -->
-          <!-- <div class="col-4"></div> -->
-      <!-- </div> -->
-      </div>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row">
-      <div class="col-4"></div>
-      <div class="col-4 text-center"><a href="#description"><i class="fa fa-angle-down arrow faa-fast faa-float animated"></i></a></div>
-      <div class="col-4"></div>
-    </div>
-  </div>
-  <div class="container" id="description">
-    <h1 class="text-center">Les dernières annonces</h1>
-    <hr>
-    <% @annonces.each do |annonce| %>
-      <div class="product">
-        <div class='product-upvote'>
-        </div>
-        <img src="<%= annonce.photo %>" alt="kudoz" class="product-image hidden-xs">
-        <div class='product-body'>
-          <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
-          <p><%= annonce.description.first(26) %></p>
-          <br />
-          <% if annonce.autrepropositions %>
-          <p><a>Cette personne est libre à d'autre propositions</a></p>
+        <div class="form-search">
+          <h3>Trouvez des objets à échanger sur Lebontroc</h3>
+          <p>Faites une recherche pour trouver des annonces ou voir les propositions pour un objet que vous souhaitez échanger.</p>
+          <%= simple_form_for :search, url: annonces_path, method: :get, class: 'form-inline' do |f| %>
+            <p>Que recherchez vous ?</p>
+            <%= f.input :produit, required: true, autofocus: true, label: false, placeholder: 'Exemple: Iphone X' %>
+            <%= f.input :where, collection: {"Voir les annonces pour ce produit" => 1, "Voir les offres pour un produit que vous voulez échanger" => 2}, label:false, required: true %>
+            <%= f.button :submit, "Rechercher", class: 'btn btn-primary btn-lg btn-search-home', style: 'width:100%'%>
           <% end %>
+          <a href="#description" title="En savoir plus"><i class="far fa-arrow-alt-circle-down"></i></a>
         </div>
-        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-          <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
-          <li><a>Posté par <%= annonce.user.pseudo %></a></li>
-        </ul>
       </div>
-    <% end %>
+    </div>
   </div>
-  <div class="container-fluid">
-    <h1 class="text-center">Comment ça marche ?</h1>
+
+  <% if @annonces.nil? %>
+  <% else %>
+    <div class="container description-home">
+      <h3>Les dernières annonces</h3>
+      <hr>
+      <div class="flex-cards-home">
+        <% @annonces.each do |annonce| %>
+          <div class="card card-spacing-home standard-hover-shadow" style="width: 18rem;">
+            <img class="card-img-top" src="<%= annonce.photo %>" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= annonce.titre %> contre <%= annonce.contre %></h5>
+              <p class="card-text"><%= annonce.description.first(20) %>...</p>
+              <%= link_to "Voir l'annonce", annonce_path(annonce), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+  <% end %>
+
+    <h3 id="description">Echanger avec Lebontroc</h3>
     <hr>
-  <!--   <ul id="progressbar">
-      <li class="active">Chercher</li>
-      <li class="active">Contacter</li>
-      <li class="active">Echanger</li>
-    </ul> -->
-  </div>
+    <div class="flex-cards-description-home">
 
-  <div class="container-fluid">
-    <div class="card-container flex-home">
-
-      <div class="card-home">
-        <div class="front">
-          <h2 class="sub-title"><i class="fa fa-search"></i> Rechercher</h2>
-          <h1 class="title">
-            Search for the city you want to rent a place in
-          </h1>
-          <%= image_tag "search.jpg", class: "image" %>
-        </div>
-        <div class="back">
-          <h3 class="synopsis">Description</h3>
-          <p>Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
-            between domestic family life and interdimensional travel.</p>
-        </div>
+      <div class="card bg-light mb-3 standard-hover-shadow" style="max-width: 18rem;">
+        <div class="card-header"><i class="fab fa-angellist" style="color: #469AE0;"></i> Simple</div>
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-caret-right" style="color: #469AE0;"></i> Simple</h5>
+            <p class="card-text">Grace à Lebontroc vous avez accès à une plateforme d'échange simple et intuitive.</p>
+          </div>
       </div>
 
-      <div class="card-home">
-        <div class="front">
-          <h2 class="sub-title"><i class="fa fa-check-circle"></i> Contacter</h2>
-          <h1 class="title">
-            Select the best place for your event
-          </h1>
-          <%= image_tag "select.jpg", class: "image" %>
-        </div>
-        <div class="back">
-          <h3 class="synopsis">Description</h3>
-          <p>Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
-            between domestic family life and interdimensional travel.</p>
-        </div>
+      <div class="card bg-light mb-3 standard-hover-shadow" style="max-width: 18rem;">
+        <div class="card-header"><i class="fa fa-forward" style="color: #469AE0;"></i> Rapide</div>
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-caret-right" style="color: #469AE0;"></i> Rapide</h5>
+            <p class="card-text">Une fois votre annonce selectionné vous pouvez rapidement contacter l'auteur de l'annonce pour conclure un échange.</p>
+          </div>
       </div>
 
-      <div class="card-home">
-        <div class="front">
-          <h2 class="sub-title"><i class="fa fa-calendar"></i> Echanger</h2>
-          <h1 class="title">
-            Takes only a few seconds to book !
-          </h1>
-          <%= image_tag "book.jpg", class: "image" %>
-        </div>
-        <div class="back">
-          <h3 class="synopsis">Description</h3>
-          <p>Rick and Morty is an American adult animated television series created by Justin Roiland and Dan Harmon for Adult Swim. The series follows the misadventures of alcoholic scientist Rick and his easily influenced grandson Morty, who split their time
-            between domestic family life and interdimensional travel.</p>
-        </div>
+      <div class="card bg-light mb-3 standard-hover-shadow" style="max-width: 18rem;">
+        <div class="card-header"><i class="fa fa-check" style="color: #469AE0;"></i> Sécurisé</div>
+          <div class="card-body">
+            <h5 class="card-title"><i class="fas fa-caret-right" style="color: #469AE0;"></i> Sécurisé</h5>
+            <p class="card-text">Une fois l'échange conclus vous pouvez rapidement procéder à l'échange soit en main propre soit par envoie postal avec notre système de caution qui empèche les anarques.</p>
+          </div>
       </div>
 
     </div>

@@ -1,39 +1,44 @@
 <div class="container">
-  <h1>Modifier cette annonce</h1>
+  <h3> (Admin) Modifier l'annonce - <%= @annonce.titre %> contre <%= @annonce.contre %></h3>
   <hr>
-
-  <%= simple_form_for @annonce do |f| %>
-  <%= f.error_notification %>
-    <div class="form-group">
-        <%= f.label :titre, 'Que voulez vous échanger ?' %>
-        <%= f.text_field :titre, class: "form-control", required: true %>
-    </div>
-    <div class="form-group">
-        <%= f.label :description, 'Description de votre produit' %>
-        <%= f.text_area :description, class: "form-control", required: true %>
-    </div>
-    <div class="form-group">
-        <%= f.label :raison, 'Pourquoi voulez vous échanger ce produit ?' %>
-        <%= f.text_area :raison, class: "form-control", required: true %>
-    </div>
-    <div class="form-group">
-        <%= f.label :contre, 'Que désirez vous en échange ?' %>
-        <%= f.text_field :contre, class: "form-control", required: true %>
-    </div>
-    <hr>
-    <div class="form-group">
-      <%= f.label :photo, 'Choissisez une photo de votre produit depuis votre ordinateur: (175x130)', required: true, error: 'Vous devez mettre une photo de votre produit.' %>
-      <%= f.input :photo, label: false %>
-      <%= f.input :photo_cache, as: :hidden %>
-    </div>
-    <hr>
-    <div class="form-group">
-        <%= f.input :autrepropositions, class: "form-control", label: 'Laisser les utilisateur vous proposez d\'autres objets en échange ?', :as => :boolean %>
-    </div>
-    <hr>
-    <%= f.submit "Mettre l'annonce à jour", class: "btn btn-primary" %>
-<!--     <div style="padding-top:10px;">
-      <p><i class="fa fa-list"></i> <%= link_to "Retour au panel administrateur",  admin_annonces_path %> <!-- | <i class="fa fa-history"></i> <%= link_to "Retour aux annonces",  annonces_path %> --></p>
-    </div> -->
-  <% end %>
+  <div class="form-standard">
+    <%= simple_form_for @annonce do |f| %>
+    <%= f.error_notification %>
+      <div class="form-group">
+          <%= f.label :titre, 'Que voulez vous échanger ?' %>
+          <%= f.text_field :titre, class: "form-control", required: true %>
+      </div>
+      <div class="form-group">
+          <%= f.label :description, 'Description de votre produit' %>
+          <%= f.text_area :description, class: "form-control", required: true %>
+      </div>
+      <div class="form-group">
+          <%= f.label :raison, 'Pourquoi voulez vous échanger ce produit ?' %>
+          <%= f.text_area :raison, class: "form-control", required: true %>
+      </div>
+      <div class="form-group">
+          <%= f.label :contre, 'Que désirez vous en échange ?' %>
+          <%= f.text_field :contre, class: "form-control", required: true %>
+      </div>
+      <hr>
+      <div class="form-group">
+        <%= f.label :photo, 'Choissisez une photo de votre produit depuis votre ordinateur: (175x130)', required: true, error: 'Vous devez mettre une photo de votre produit.' %>
+        <%= f.input :photo, label: false %>
+        <%= f.input :photo_cache, as: :hidden %>
+      </div>
+      <hr>
+      <div class="form-group">
+          <%= f.input :autrepropositions, class: "form-control", label: 'Laisser les utilisateur vous proposez d\'autres objets en échange ?', :as => :boolean %>
+      </div>
+      <hr>
+      <div class="form-group">
+        <p>Choisissez votre mode d'échange:</p>
+        <p><%= f.radio_button :typeechange, '0' %> Seulement remise en main propre</p>
+        <p><%= f.radio_button :typeechange, '1' %> Seulement par voie postal</p>
+        <p><%= f.radio_button :typeechange, '2' %> Les deux</p>
+      </div>
+      <hr>
+      <%= f.submit "Mettre l'annonce à jour", class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>

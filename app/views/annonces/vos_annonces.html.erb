@@ -1,5 +1,5 @@
 <div class="container">
-  <h1>Vos annonces</h1>
+  <h3>Vos annonces - <%= @current_user.pseudo %></h3>
   <hr>
   <% @annonces_user.each do |annonce| %>
     <div class="product">

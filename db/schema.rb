@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_11_171313) do
+ActiveRecord::Schema.define(version: 2019_01_17_124454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 2019_01_11_171313) do
     t.string "titre"
     t.string "contre"
     t.bigint "user_id"
-    t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status", default: 0
@@ -27,6 +26,7 @@ ActiveRecord::Schema.define(version: 2019_01_11_171313) do
     t.boolean "autrepropositions", default: false
     t.string "raison"
     t.string "photo"
+    t.integer "typeechange", default: 0
     t.index ["user_id"], name: "index_annonces_on_user_id"
   end
 
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_01_11_171313) do
     t.string "last_name"
     t.string "phone"
     t.boolean "admin"
-    t.string "pseudo"
+    t.string "pseudo", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
