@@ -12,10 +12,13 @@
   height: calc(70vh - 70px);
   background-size: cover !important;
   background-image: asset-data-url('banner-home.jpg');
+  background-attachment: fixed;
+  background-position: center;
   display: flex;
   align-items: center;
   justify-content: left;
 }
+
 .banner h3 {
   font-size: 30px;
   font-weight: bold;
