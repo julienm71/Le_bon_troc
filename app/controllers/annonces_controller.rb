@@ -3,6 +3,7 @@ class AnnoncesController < ApplicationController
   def index
     if params.dig("search").present?
       @param_search_produit = params["search"]["produit"].gsub(/[^a-zA-Z 0-9]/, '').strip()
+      @param_search_localisation = params["search"]["localisation"].gsub(/[^a-zA-Z ]/, '').strip()
       @param_search_where = params["search"]["where"]
       if @param_search_where == "1"
       @annonces = Annonce.where('lower(titre) LIKE ?', "%#{@param_search_produit.downcase}%").order(created_at: :desc)
@@ -11,10 +12,26 @@ class AnnoncesController < ApplicationController
       end
       if @annonces.empty?
         redirect_to root_path
-        flash[:alert] = "Aucune annonces ne correspondes à '#{@param_search_produit}'"
+        flash[:alert] = "Aucune annonces ne correspondes à '#{@param_search_produit}'".html_safe
       else
-        @annonces_page_title = "Annonces correspondantes à '#{@param_search_produit}'"
-        @annonces_count = @annonces.count
+        if @param_search_localisation != 'France'
+          @annonces_by_localisation = []
+          @annonces.each do |annonce|
+            if annonce.user.region == @param_search_localisation
+              @annonces_by_localisation << annonce
+            end
+          end
+          if @annonces_by_localisation.empty?
+            redirect_to root_path
+            flash[:alert] = "Aucune annonces ne correspondes à '#{@param_search_produit}' en #{@param_search_localisation}".html_safe
+          else
+            @annonces_page_title = "Annonces correspondantes à '#{@param_search_produit}' en #{@param_search_localisation}"
+            @annonces_count = @annonces_by_localisation.count
+          end
+        else
+          @annonces_page_title = "Annonces correspondantes à '#{@param_search_produit}' en France"
+          @annonces_count = @annonces.count
+        end
       end
     else
       @annonces = Annonce.where(status: 2).order(created_at: :desc)
@@ -37,16 +54,12 @@ class AnnoncesController < ApplicationController
   end
 
   def create
-    if (annonce_params[:titre] == "" || annonce_params[:description] == "" || annonce_params[:raison] == "" || annonce_params[:contre] == "")
-      redirect_to new_annonce_path
-      flash[:alert] = "Veuillez renseigner touts les champs.".html_safe
-    else
     @annonce = Annonce.new(annonce_params.merge(status: 0, user_id: current_user.id))
     @annonce.save
 
     redirect_to vos_annonces_path
     flash[:notice] = "Votre annonce à bien été créé. Vous pouvez la consulter dans la rubrique 'Mes annonces'.".html_safe
-    end
+
   end
 
   def edit
@@ -107,6 +120,6 @@ class AnnoncesController < ApplicationController
   end
 
   def annonce_params
-    params.require(:annonce).permit(:titre, :description, :contre, :user_id, :autrepropositions, :raison, :photo, :typeechange)
+    params.require(:annonce).permit(:titre, :description, :contre, :user_id, :autrepropositions, :raison, :photo, :photo2, :photo3, :typeechange)
   end
 end

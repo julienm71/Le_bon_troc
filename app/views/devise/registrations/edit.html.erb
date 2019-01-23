@@ -10,6 +10,12 @@
           <%= f.input :email, disabled: true, autofocus: true %>
           <%= f.input :phone, required: true, autofocus: true, label: "Téléphone", error: 'Vous devez enter un numéro de téléphone.' %>
           <hr>
+          <%= f.input :pays, label: 'Pays', placeholder: 'France', required: true, autofocus: true, error: 'Vous devez entrer un pays.', disabled: true %>
+          <%= f.input :region, collection: {'Alsace' => 'Alsace', 'Aquitaine' => 'Aquitaine', 'Auvergne' => 'Auvergne', 'Basse Normandie' => 'Basse Normandie', 'Bourgogne' => 'Bourgogne', 'Bretagne' => 'Bretagne', 'Centre' => 'Centre', 'Champagne-Ardenne' => 'Champagne-Ardenne', 'Corse' => 'Corse', 'Franche-Comté' => 'Franche-Comté', 'Haute Normandie' => 'Haute Normandie', 'Ile-de-France' => 'Ile-de-France', 'Languedoc-Rousillon' => 'Languedoc-Rousillon', 'Limousin' => 'Limousin', 'Lorraine' => 'Lorraine', 'Midi-Pyrénées' => 'Midi-Pyrénées', 'Nord-Pas-de-Calais' => 'Nord-Pas-de-Calais', 'Pays de la Loire' => 'Pays de la Loire', 'Picardie' => 'Picardie', 'Poitou-Charentes' => 'Poitou-Charentes', 'Provences-Alpe-Cote-Azur' => 'Provences-Alpe-Cote-Azur', 'Rhone-Alpes' => 'Rhone-Alpes', 'Régions outre mer' => 'Région outre mer', 'Guadeloupe' => 'Guadeloupe', 'Martinique' => 'Martinique', 'Guyane' => 'Guyane', 'La Réunion' => 'La Réunion', 'Mayotte' => 'Mayotte'}, label: 'Région', required: true, autofocus: true %>
+          <%= f.input :ville, label: 'Ville', required: true, autofocus: true, error: 'Vous devez entrer une ville.' %>
+          <%= f.input :cp, label: 'Code Postal', required: true, autofocus: true, error: 'Vous devez entrer un code postal.' %>
+          <%= f.input :adresse, label: 'Adresse', required: true, autofocus: true, error: 'Vous devez entrer une adresse.' %>
+          <hr>
           <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
             <p>En attente de confirmation pour: <%= resource.unconfirmed_email %></p>
           <% end %>

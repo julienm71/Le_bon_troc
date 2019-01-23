@@ -1,7 +1,9 @@
 class Annonce < ApplicationRecord
   belongs_to :user
   mount_uploader :photo, PhotoUploader
-  validates :titre, :description, :raison, :contre, presence: true
+  mount_uploader :photo2, PhotoUploader
+  mount_uploader :photo3, PhotoUploader
+  validates :titre, :description, :raison, :contre, :photo, presence: true
   # after_create :new_annonce_mail
 
   def new_annonce_mail

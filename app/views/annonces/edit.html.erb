@@ -22,9 +22,12 @@
       </div>
       <hr>
       <div class="form-group">
-        <%= f.label :photo, 'Choissisez une photo de votre produit depuis votre ordinateur: (175x130)', required: true, error: 'Vous devez mettre une photo de votre produit.' %>
-        <%= f.input :photo, label: false %>
-        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.label :photo, 'Choissisez au moins une photo de votre produit depuis votre ordinateur: (175x130)' %>
+        <%= f.input :photo, label: false, required: true %>
+
+        <%= f.input :photo2, label: false, required: false %>
+
+        <%= f.input :photo3, label: false, required: false %>
       </div>
       <hr>
       <div class="form-group">

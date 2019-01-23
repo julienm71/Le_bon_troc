@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 User.destroy_all
 Annonce.destroy_all
 
@@ -20,6 +12,11 @@ useradmin = User.new(
   password: 'test123',
   phone: '0651763648',
   admin: true,
+  pays: 'France',
+  ville: 'Cluny',
+  region: 'Bourgogne',
+  cp: 71250,
+  adresse: '14 Allée des mures',
 )
 useradmin.save!
 
@@ -31,6 +28,11 @@ usertest = User.new(
   password: 'test123',
   phone: '0651763648',
   admin: false,
+  pays: 'France',
+  ville: 'Cluny',
+  region: 'Bourgogne',
+  cp: 71250,
+  adresse: '14 Allée des mures',
 )
 usertest.save!
 
@@ -45,6 +47,8 @@ annonceadmin = Annonce.new(
   user: useradmin,
 )
 annonceadmin.remote_photo_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+annonceadmin.remote_photo2_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+annonceadmin.remote_photo3_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
 annonceadmin.save!
 
 annoncetest = Annonce.new(
@@ -58,6 +62,8 @@ annoncetest = Annonce.new(
   user: usertest,
 )
 annoncetest.remote_photo_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+annoncetest.remote_photo2_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+annoncetest.remote_photo3_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
 annoncetest.save!
 
 puts "--> Annonce test created!"

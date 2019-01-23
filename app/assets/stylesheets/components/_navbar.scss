@@ -24,7 +24,7 @@
 
 /* Right section */
 .navbar-wagon-right {
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: space-between;
 }
