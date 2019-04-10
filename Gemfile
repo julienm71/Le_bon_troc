@@ -11,6 +11,8 @@ gem 'redis'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap', '~> 4.2.1'
+gem 'money-rails'
+gem 'stripe'
 gem 'font-awesome-sass', '~> 5.5.0'
 gem 'rails-assets-font-awesome-animation', source: 'https://rails-assets.org'
 gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
