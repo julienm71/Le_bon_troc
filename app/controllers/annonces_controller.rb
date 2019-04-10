@@ -5,6 +5,7 @@ class AnnoncesController < ApplicationController
       @param_search_produit = params["search"]["produit"].gsub(/[^a-zA-Z 0-9]/, '').strip()
       @param_search_localisation = params["search"]["localisation"].gsub(/[^a-zA-Z ]/, '').strip()
       @param_search_where = params["search"]["where"]
+      @annonces = Annonce.where(status: 2).order(created_at: :desc)
       if @param_search_where == "1"
       @annonces = Annonce.where('lower(titre) LIKE ?', "%#{@param_search_produit.downcase}%").order(created_at: :desc)
       elsif @param_search_where == "2"
