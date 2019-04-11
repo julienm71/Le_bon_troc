@@ -9,7 +9,7 @@
 .banner {
   color: $main-text-color;
   text-align: left;
-  height: calc(70vh - 70px);
+  height: calc(85vh - 70px);
   background-size: cover !important;
   background-image: asset-data-url('banner-home.jpg');
   background-attachment: fixed;
@@ -51,22 +51,16 @@ form p {
   margin-bottom:5px !important;
 }
 
-#home-search {
-  border-radius: 3px;
-  width: 500px;
-}
+// #home-search {
+//   border-radius: 3px;
+//   width: 500px;
+// }
 
 // #home-search-text {
 // color:$main-text-color;
 // position: absolute;
 // right: 0;
 // }
-
-.btn-search-home {
-  height: 44px;
-  font-weight:bold;
-  font-size: 16px;
-}
 
 .flex-cards-home {
   display: flex;

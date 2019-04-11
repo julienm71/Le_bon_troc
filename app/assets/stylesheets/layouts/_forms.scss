@@ -13,8 +13,8 @@
 }
 
 .form-search {
-  height: 85%;
-  width: 50%;
+  // height: 90%;
+  // width: 50%;
   background:rgb(255, 255, 255) none repeat scroll 0% 0%;
   border-radius: 4px;
   padding: 32px;
@@ -24,4 +24,10 @@
 .form-search:hover {
   box-shadow: 0 0px 5px rgba(0, 0, 0, 0.45);
   transition: all 0.5s ease-in-out;
+}
+
+.btn-search-home {
+  height: 44px;
+  font-weight:bold;
+  font-size: 16px;
 }

@@ -2,6 +2,7 @@ class Admin::AnnoncesController < ApplicationController
 before_action :authenticate_admin!
 
   def index
+    @current_nav = "Annonces"
     @status_list = ["en attente", "refusé", "accepté"]
     @annonces = Annonce.all.order(created_at: :desc).uniq
     @annonces_en_attente =  Annonce.where(status: 0).order(created_at: :desc).uniq

@@ -1,5 +1,4 @@
 import "bootstrap";
-// import { adminpanel } from '../components/admin-panel';
-import { loadDynamicBannerText } from '../components/typed';
-// adminpanel();
+import "../components/admin";
+// import { loadDynamicBannerText } from '../components/typed';
 // loadDynamicBannerText();

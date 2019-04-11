@@ -1,11 +1,11 @@
-<div class="navbar-lebontroc fixed-top">
+<div class="navbar-lebontroc sticky-top">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-lebontroc-brand" do %>
     <%= image_tag "logo.png", height: 175 %>
   <% end %>
 
   <!-- Right Navigation -->
-  <div class="navbar-lebontroc-right d-none d-md-block">
+  <div class="navbar-lebontroc-right d-none d-lg-block">
     <%= link_to '<i class="far fa-newspaper"></i> Annonces'.html_safe, annonces_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %>
     <% if user_signed_in? %>
 
@@ -13,7 +13,7 @@
       <%= link_to '<i class="fa fa-plus"></i> Déposer une annonce'.html_safe, new_annonce_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %>
       <%= link_to '<i class="fa fa-list"></i> Mes annonces'.html_safe, vos_annonces_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %>
       <% if current_user.admin == true %>
-       <%= link_to '<i class="fas fa-columns"></i> Panel administrateur'.html_safe, admin_annonces_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %>
+       <%= link_to '<i class="fas fa-columns"></i> Panel administrateur'.html_safe, admin_dashboard_index_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %>
       <% end %>
 
       <!-- Avatar with dropdown menu -->
@@ -43,7 +43,7 @@
 
   <!-- Dropdown list appearing on mobile only -->
 
-  <div class="navbar-lebontroc-item d-block d-md-none">
+  <div class="navbar-lebontroc-item d-block d-lg-none">
     <div class="dropdown flex-nav-mobile">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-lebontroc-dropdown-menu">
@@ -52,7 +52,7 @@
           <li><%= link_to '<i class="fa fa-plus"></i> Déposer une annonce'.html_safe, new_annonce_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %></li>
           <li><%= link_to '<i class="fa fa-list"></i> Mes annonces'.html_safe, vos_annonces_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %></li>
           <% if current_user.admin == true %>
-           <li><%= link_to '<i class="fas fa-columns"></i> Panel administrateur'.html_safe, admin_annonces_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %></li>
+           <li><%= link_to '<i class="fas fa-columns"></i> Panel administrateur'.html_safe, admin_dashboard_index_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %></li>
           <% end %>
           <li>
             <%= link_to edit_user_registration_path do %>
