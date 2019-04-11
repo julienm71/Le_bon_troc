@@ -1,0 +1,32 @@
+<div class="container">
+  <h1 style="text-align:center;">A D M I N - P A N E L</h1>
+  <hr>
+  <nav class="nav nav-pills nav-justified">
+    <%= link_to '<i class="fas fa-tachometer-alt"></i> Dashboard'.html_safe, admin_dashboard_index_path, class: "nav-item nav-link", id: 'admin_dashboard'%>
+    <%= link_to '<i class="fas fa-users"></i> Gestion des utilisateurs'.html_safe, admin_users_path, class: "nav-item nav-link", id: 'admin_users' %>
+    <%= link_to '<i class="fas fa-newspaper"></i> Gestion des annonces'.html_safe, admin_annonces_path, class: "nav-item nav-link", id: 'admin_annonces' %>
+    <%= link_to '<i class="fas fa-exclamation-triangle"></i> Gestion des conflits'.html_safe, admin_conflicts_path, class: "nav-item nav-link", id: 'admin_conflits' %>
+    <%= link_to '<i class="fab fa-stripe"></i> Gestion de stripe'.html_safe, admin_conflicts_path, class: "nav-item nav-link", id: 'admin_stripe' %>
+  </nav>
+<hr class="my-3">
+</div>
+
+<script type="text/javascript">
+  switch ('<%= @current_nav %>') {
+    case "Dashboard":
+      document.getElementById('admin_dashboard').classList.add('active');
+      break;
+    case "Users":
+      document.getElementById('admin_users').classList.add('active');
+      break;
+    case "Annonces":
+      document.getElementById('admin_annonces').classList.add('active');
+      break;
+    case "Conflits":
+      document.getElementById('admin_conflits').classList.add('active');
+      break;
+    case "Stripe":
+      document.getElementById('admin_stripe').classList.add('active');
+      break;
+  }
+</script>
