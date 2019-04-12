@@ -1,6 +1,8 @@
 <%= render 'admin/shared/navbar-admin' %>
-
 <div class="container">
+<%= link_to new_admin_user_path, class: "float-right btn btn-primary btn-sm", style: 'color:white;' do %>
+  <i class="fa fa-plus"></i> Nouvelle utilisateur
+<% end %>
   <nav>
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" id="all-users-tab" data-toggle="tab" href="#all-users" role="tab" aria-controls="all-users" aria-selected="true">Tout les utilisateurs</a>
@@ -8,7 +10,7 @@
       <a class="nav-item nav-link" id="admin-users-tab" data-toggle="tab" href="#admin-users" role="tab" aria-controls="admin-users" aria-selected="false">Administrateurs</a>
     </div>
   </nav>
-  <div class="tab-content mt-2" id="nav-tabContent">
+  <div class="tab-content mt-3" id="nav-tabContent">
     <div class="tab-pane fade show active" id="all-users" role="tabpanel" aria-labelledby="all-users-tab">
       <table class="table table-striped table-responsive">
         <thead>
@@ -38,7 +40,7 @@
             <td><%= user.adresse %>, <%= user.ville %>, <%= user.cp %></td>
             <td><%= user.created_at.strftime('%d/%m/%Y') %></td>
             <td><%= user.admin %></td>
-            <td>|</td>
+            <td></td>
             <td class="flex">
 
   <!--             <%= link_to "", admin_users_modal_settings_path(user), method: :get, id: 'trigger-modal', title: "Voir les annonces de l'utilisateur", :class => "fa fa-eye" %> -->
@@ -81,7 +83,7 @@
             <td><%= user.adresse %>, <%= user.ville %>, <%= user.cp %></td>
             <td><%= user.created_at.strftime('%d/%m/%Y') %></td>
             <td><%= user.admin %></td>
-            <td>|</td>
+            <td></td>
             <td class="flex">
 
   <!--             <%= link_to "", admin_users_modal_settings_path(user), method: :get, id: 'trigger-modal', title: "Voir les annonces de l'utilisateur", :class => "fa fa-eye" %> -->
@@ -124,7 +126,7 @@
             <td><%= user.adresse %>, <%= user.ville %>, <%= user.cp %></td>
             <td><%= user.created_at.strftime('%d/%m/%Y') %></td>
             <td><%= user.admin %></td>
-            <td>|</td>
+            <td></td>
             <td class="flex">
 
   <!--             <%= link_to "", admin_users_modal_settings_path(user), method: :get, id: 'trigger-modal', title: "Voir les annonces de l'utilisateur", :class => "fa fa-eye" %> -->

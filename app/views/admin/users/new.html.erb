@@ -3,9 +3,9 @@
     <div class="col-3"></div>
     <div class="col-6">
       <div class="form-standard">
-        <h2><i class="fa fa-user"></i> S'enregistrer</h2>
+        <h2><i class="fa fa-user"></i> (Admin) Créé un utilisateur</h2>
         <hr>
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= simple_form_for(@user, url: new_user_registration_path) do |f| %>
           <%= f.error_notification %>
 
           <div class="form-inputs">
@@ -35,10 +35,9 @@
             <div id="card-errors" role="alert"></div>
           </div> -->
           <div class="form-actions">
-            <%= f.button :submit, "S'enregistrer", class: "btn btn-success", style: "width:100%; margin-bottom:15px;"%>
+            <%= f.button :submit, "Créé l'utilisateur", class: "btn btn-success", style: "width:100%; margin-bottom:15px;"%>
           </div>
         <% end %>
-      <%= render "devise/shared/links" %>
       </div>
     </div>
     <div class="col-3"></div>

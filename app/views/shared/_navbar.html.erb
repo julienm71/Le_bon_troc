@@ -13,7 +13,7 @@
       <%= link_to '<i class="fa fa-plus"></i> Déposer une annonce'.html_safe, new_annonce_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %>
       <%= link_to '<i class="fa fa-list"></i> Mes annonces'.html_safe, vos_annonces_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %>
       <% if current_user.admin == true %>
-       <%= link_to '<i class="fas fa-columns"></i> Panel administrateur'.html_safe, admin_dashboard_index_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %>
+       <%= link_to '<i class="fas fa-user-shield"></i> Panel admin'.html_safe, admin_dashboard_index_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %>
       <% end %>
 
       <!-- Avatar with dropdown menu -->
@@ -52,7 +52,7 @@
           <li><%= link_to '<i class="fa fa-plus"></i> Déposer une annonce'.html_safe, new_annonce_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %></li>
           <li><%= link_to '<i class="fa fa-list"></i> Mes annonces'.html_safe, vos_annonces_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %></li>
           <% if current_user.admin == true %>
-           <li><%= link_to '<i class="fas fa-columns"></i> Panel administrateur'.html_safe, admin_dashboard_index_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %></li>
+           <li><%= link_to '<i class="fas fa-user-shield"></i> Panel admin'.html_safe, admin_dashboard_index_path, class: "navbar-lebontroc-item navbar-lebontroc-link" %></li>
           <% end %>
           <li>
             <%= link_to edit_user_registration_path do %>
