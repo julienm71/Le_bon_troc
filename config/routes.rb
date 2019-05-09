@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :dashboard, only: [:index]
     resources :annonces, only: [:index, :update, :destroy, :edit]
-    resources :users, only: [:index, :update, :destroy, :edit, :new]
+    resources :users, only: [:index, :update, :destroy, :edit, :new, :create]
     resources :conflicts, only: [:index, :update, :destroy, :edit]
     get 'users/modal_settings', to: 'users#modal_settings'
   end

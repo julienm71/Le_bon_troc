@@ -28,12 +28,12 @@ before_action :allow_without_password, only: [:update]
   end
 
   def create
-    @user = User.new(user_params)
-    if @user.save
+    @new_user = User.new(user_params)
+    if @new_user.save
       flash[:notice] = "Utilisateur créé"
       redirect_to admin_users_path
     else
-      render new_admin_user_path
+      redirect_to admin_users_path
       flash[:alert] = "Erreur lors de la création de l'utilisateur"
     end
   end
@@ -45,18 +45,18 @@ before_action :allow_without_password, only: [:update]
    def update
      @user = User.find(params[:id])
      if @user.update(user_params)
-       redirect_to admin_user_path
+       redirect_to admin_users_path
        flash[:notice] = "Utilisateur mis à jour".html_safe
      else
-       render edit_admin_user_path
+       render admin_users_path
        flash[:alert] = "Erreur lors de la mise à jour de l'utilisateur".html_safe
      end
    end
 
   def destroy
-    @annonce = User.find(params[:id])
-    @annonce.destroy
-    redirect_to admin_user_path
+    @user = User.find(params[:id])
+    @user.destroy
+    redirect_to admin_users_path
     flash[:notice] = "Utilisateur supprimé".html_safe
   end
 
@@ -78,7 +78,7 @@ before_action :allow_without_password, only: [:update]
     end
   end
 
-  # def users_params
-  #   params.permit(:format, :user)
-  # end
+  def user_params
+    params.require(:user).permit!
+  end
 end
