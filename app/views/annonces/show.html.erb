@@ -2,7 +2,7 @@
   <h3><%= @annonce.titre %> contre <%= @annonce.contre %></h3>
   <p>Posté par <%= @annonce.user.pseudo %></p>
   <hr>
-  <div class="flex-show">
+<!--   <div class="flex-show">
 
     <button title="Cliquez pour agrandir l'image" type="button" class="button-img-modal" data-toggle="modal" data-target="#image1-modal"><img src="<%= @annonce.photo %>" style="height:130px;width:175px;" alt="img error" class="product-image"></button>
 
@@ -15,7 +15,40 @@
     <% else %>
       <button title="Cliquez pour agrandir l'image" type="button" class="button-img-modal" data-toggle="modal" data-target="#image3-modal"><img src="<%= @annonce.photo3 %>" style="height:130px;width:175px;" alt="img error" class="product-image"></button>
     <% end %>
+  </div> -->
+
+  <div id="slide-annonce-show" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#slide-annonce-show" data-slide-to="0" class="active"></li>
+      <li data-target="#slide-annonce-show" data-slide-to="1"></li>
+      <li data-target="#slide-annonce-show" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <%= cl_image_tag @annonce.photo, alt: "Image", class: 'd-block w-100', crop: :scale %>
+      </div>
+      <% if !@annonce.photo2.file.nil? %>
+        <div class="carousel-item">
+          <%= cl_image_tag @annonce.photo2, alt: "Image", class: 'd-block w-100', crop: :scale %>
+        </div>
+      <% end %>
+      <% if !@annonce.photo3.file.nil? %>
+        <div class="carousel-item">
+          <%= cl_image_tag @annonce.photo3, alt: "Image", class: 'd-block w-100', crop: :scale %>
+        </div>
+      <% end %>
+      <% if !@annonce.photo2.file.nil? %>
+        <a class="carousel-control-prev" href="#slide-annonce-show" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Image précèdente</span>
+        </a>
+        <a class="carousel-control-next" href="#slide-annonce-show" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Image suivante</span>
+        </a>
+      <% end %>
   </div>
+
   <hr>
   <h3>Description</h3>
   <p> - <%= @annonce.description %></p>
