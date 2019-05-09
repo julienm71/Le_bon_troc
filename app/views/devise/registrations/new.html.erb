@@ -1,48 +1,42 @@
 <div class="container">
-  <div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-      <div class="form-standard">
-        <h2><i class="fa fa-user"></i> S'enregistrer</h2>
-        <hr>
-        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= f.error_notification %>
+    <div class="form-standard">
+      <h2><i class="fa fa-user"></i> S'enregistrer</h2>
+      <hr>
+      <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
 
-          <div class="form-inputs">
-            <%= f.input :pseudo, label: 'Pseudo', required: true, autofocus: true, error: 'Vous devez entrer un pseudo.' %>
-            <%= f.input :first_name, label: 'Prénom', required: true, autofocus: true, error: 'Vous devez entrer un prénom.' %>
-            <%= f.input :last_name, label: 'Nom', required: true, autofocus: true, error: 'Vous devez entrer un nom.' %>
-            <%= f.input :email, label: 'Email', required: true, autofocus: true, error: 'Vous devez entrer un email.' %>
-            <%= f.input :phone, label: 'Téléphone', required: true, autofocus: true, error: 'Vous devez entrer un numéro de téléphone.' %>
-            <hr>
-            <%= f.input :pays, label: 'Pays', placeholder: 'France',required: true, autofocus: true, error: 'Vous devez entrer un pays.', disabled: true %>
-            <%= f.input :region, collection: {'Alsace' => 'Alsace', 'Aquitaine' => 'Aquitaine', 'Auvergne' => 'Auvergne', 'Basse Normandie' => 'Basse Normandie', 'Bourgogne' => 'Bourgogne', 'Bretagne' => 'Bretagne', 'Centre' => 'Centre', 'Champagne-Ardenne' => 'Champagne-Ardenne', 'Corse' => 'Corse', 'Franche-Comté' => 'Franche-Comté', 'Haute Normandie' => 'Haute Normandie', 'Ile-de-France' => 'Ile-de-France', 'Languedoc-Rousillon' => 'Languedoc-Rousillon', 'Limousin' => 'Limousin', 'Lorraine' => 'Lorraine', 'Midi-Pyrénées' => 'Midi-Pyrénées', 'Nord-Pas-de-Calais' => 'Nord-Pas-de-Calais', 'Pays de la Loire' => 'Pays de la Loire', 'Picardie' => 'Picardie', 'Poitou-Charentes' => 'Poitou-Charentes', 'Provences-Alpe-Cote-Azur' => 'Provences-Alpe-Cote-Azur', 'Rhone-Alpes' => 'Rhone-Alpes', 'Régions outre mer' => 'Région outre mer', 'Guadeloupe' => 'Guadeloupe', 'Martinique' => 'Martinique', 'Guyane' => 'Guyane', 'La Réunion' => 'La Réunion', 'Mayotte' => 'Mayotte'}, label: 'Région', required: true, autofocus: true %>
-            <%= f.input :ville, label: 'Ville', required: true, autofocus: true, error: 'Vous devez entrer une ville.' %>
-            <%= f.input :cp, label: 'Code Postal', required: true, autofocus: true, error: 'Vous devez entrer un code postal.' %>
-            <%= f.input :adresse, label: 'Adresse', required: true, autofocus: true, error: 'Vous devez entrer une adresse.' %>
-            <hr>
-            <%= f.input :password, label: 'Créer un mot de passe', required: true, hint: ("#{@minimum_password_length} charactères minimum" if @minimum_password_length), error: 'Vous devez entrer un mot de passe.' %>
-            <%= f.input :password_confirmation, label: 'Confirmez le mot passe', required: true, error: 'Vous devez confirmer votre mot de passe.' %>
-          </div>
+        <div class="form-inputs">
+          <%= f.input :pseudo, label: 'Pseudo', required: true, autofocus: true, error: 'Vous devez entrer un pseudo.' %>
+          <%= f.input :first_name, label: 'Prénom', required: true, autofocus: true, error: 'Vous devez entrer un prénom.' %>
+          <%= f.input :last_name, label: 'Nom', required: true, autofocus: true, error: 'Vous devez entrer un nom.' %>
+          <%= f.input :email, label: 'Email', required: true, autofocus: true, error: 'Vous devez entrer un email.' %>
+          <%= f.input :phone, label: 'Téléphone', required: true, autofocus: true, error: 'Vous devez entrer un numéro de téléphone.' %>
+          <hr>
+          <%= f.input :pays, label: 'Pays', placeholder: 'France',required: true, autofocus: true, error: 'Vous devez entrer un pays.', disabled: true %>
+          <%= f.input :region, collection: {'Alsace' => 'Alsace', 'Aquitaine' => 'Aquitaine', 'Auvergne' => 'Auvergne', 'Basse Normandie' => 'Basse Normandie', 'Bourgogne' => 'Bourgogne', 'Bretagne' => 'Bretagne', 'Centre' => 'Centre', 'Champagne-Ardenne' => 'Champagne-Ardenne', 'Corse' => 'Corse', 'Franche-Comté' => 'Franche-Comté', 'Haute Normandie' => 'Haute Normandie', 'Ile-de-France' => 'Ile-de-France', 'Languedoc-Rousillon' => 'Languedoc-Rousillon', 'Limousin' => 'Limousin', 'Lorraine' => 'Lorraine', 'Midi-Pyrénées' => 'Midi-Pyrénées', 'Nord-Pas-de-Calais' => 'Nord-Pas-de-Calais', 'Pays de la Loire' => 'Pays de la Loire', 'Picardie' => 'Picardie', 'Poitou-Charentes' => 'Poitou-Charentes', 'Provences-Alpe-Cote-Azur' => 'Provences-Alpe-Cote-Azur', 'Rhone-Alpes' => 'Rhone-Alpes', 'Régions outre mer' => 'Région outre mer', 'Guadeloupe' => 'Guadeloupe', 'Martinique' => 'Martinique', 'Guyane' => 'Guyane', 'La Réunion' => 'La Réunion', 'Mayotte' => 'Mayotte'}, label: 'Région', required: true, autofocus: true %>
+          <%= f.input :ville, label: 'Ville', required: true, autofocus: true, error: 'Vous devez entrer une ville.' %>
+          <%= f.input :cp, label: 'Code Postal', required: true, autofocus: true, error: 'Vous devez entrer un code postal.' %>
+          <%= f.input :adresse, label: 'Adresse', required: true, autofocus: true, error: 'Vous devez entrer une adresse.' %>
+          <hr>
+          <%= f.input :password, label: 'Créer un mot de passe', required: true, hint: ("#{@minimum_password_length} charactères minimum" if @minimum_password_length), error: 'Vous devez entrer un mot de passe.' %>
+          <%= f.input :password_confirmation, label: 'Confirmez le mot passe', required: true, error: 'Vous devez confirmer votre mot de passe.' %>
+        </div>
 <!--           <div class="form-row">
-            <label for="card-element">
-              Carte Bancaire (sécurisé)
-            </label>
-            <div id="card-element">
+          <label for="card-element">
+            Carte Bancaire (sécurisé)
+          </label>
+          <div id="card-element">
 
-            </div>
-
-            <div id="card-errors" role="alert"></div>
-          </div> -->
-          <div class="form-actions">
-            <%= f.button :submit, "S'enregistrer", class: "btn btn-success", style: "width:100%; margin-bottom:15px;"%>
           </div>
-        <% end %>
-      <%= render "devise/shared/links" %>
-      </div>
+
+          <div id="card-errors" role="alert"></div>
+        </div> -->
+        <div class="form-actions">
+          <%= f.button :submit, "S'enregistrer", class: "btn btn-success", style: "width:100%; margin-bottom:15px;"%>
+        </div>
+      <% end %>
+    <%= render "devise/shared/links" %>
     </div>
-    <div class="col-3"></div>
-  </div>
 </div>
 <script src="https://js.stripe.com/v3/"></script>
 

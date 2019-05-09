@@ -51,17 +51,6 @@ form p {
   margin-bottom:5px !important;
 }
 
-// #home-search {
-//   border-radius: 3px;
-//   width: 500px;
-// }
-
-// #home-search-text {
-// color:$main-text-color;
-// position: absolute;
-// right: 0;
-// }
-
 .flex-cards-home {
   display: flex;
   align-items: center;
@@ -78,6 +67,19 @@ form p {
   justify-content: space-evenly;
 }
 
+.card.card-spacing-home {
+  height:400px;
+  width:18rem;
+}
+
 .card-spacing-home {
   margin-right: 15px;
+  margin-bottom: 1rem !important;
+}
+
+i.fa-chevron-down {
+  margin-top: 1rem;
+  color: #484848;
+  font-size:30px;
+  opacity: 0.8;
 }

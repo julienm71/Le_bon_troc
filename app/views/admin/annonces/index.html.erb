@@ -26,9 +26,9 @@
             <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
             <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
             <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
-            <li><%= link_to "", admin_annonce_path(annonce, status: 2), method: :patch, title: "Accepter l'annonce", data: { confirm: "Etes vous sur de vouloir accepter et publier cette annonce ?" }, :class => "far fa-check"%></li>
+   <!--          <li><%= link_to "", admin_annonce_path(annonce, status: 2), method: :patch, title: "Accepter l'annonce", data: { confirm: "Etes vous sur de vouloir accepter et publier cette annonce ?" }, :class => "far fa-check"%></li>
             <li><%= link_to "", admin_annonce_path(annonce, status: 0), method: :patch, title: "Mettre l'annonce en attente", data: { confirm: "Etes vous sur de vouloir mettre cette annonce en attente ?" }, :class => "far fa-clock"%></li>
-            <li><%= link_to "", admin_annonce_path(annonce, status: 1), method: :patch, title: "Refuser l'annonce", data: { confirm: "Etes vous sur de vouloir refuser cette annonce ?" }, :class => "far fa-times"%></li>
+            <li><%= link_to "", admin_annonce_path(annonce, status: 1), method: :patch, title: "Refuser l'annonce", data: { confirm: "Etes vous sur de vouloir refuser cette annonce ?" }, :class => "far fa-times"%></li> -->
           </ul>
         </div>
       <% end %>

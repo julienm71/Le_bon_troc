@@ -17,24 +17,45 @@
     </div> -->
   </div>
   <hr>
-  <% @annonces.each do |annonce| %>
-    <div class="product">
-      <div class='product-upvote'>
+  <div class="d-none d-md-block">
+    <% if !@annonces.nil? %>
+    <% @annonces.each do |annonce| %>
+      <div class="product">
+        <div class='product-upvote'>
+        </div>
+        <img src="<%= annonce.photo %>" alt="kudoz" class="product-image d-none d-md-block">
+        <div class='product-body'>
+          <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+          <p><%= annonce.description.first(20) %>...</p>
+          <br />
+          <% if annonce.autrepropositions %>
+          <p><a>Cette personne est libre à d'autre propositions</a></p>
+          <% end %>
+        </div>
+        <ul class="list-inline product-controls product-controls-hidden hidden-sm d-none d-md-block">
+          <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+          <li><a>Posté par <%= annonce.user.pseudo %> le <%= annonce.created_at.strftime("%d %B, %Y") %></a></li>
+        </ul>
       </div>
-      <img src="<%= annonce.photo %>" alt="kudoz" class="product-image hidden-xs">
-      <div class='product-body'>
-        <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
-        <p><%= annonce.description.first(20) %>...</p>
-        <br />
-        <% if annonce.autrepropositions %>
-        <p><a>Cette personne est libre à d'autre propositions</a></p>
+    <% end %>
+    <% end %>
+  </div>
+
+  <div class="d-block d-md-none">
+    <div class="container description-home">
+      <div class="flex-cards-home">
+        <% if !@annonces.nil? %>
+        <% @annonces.each do |annonce| %>
+          <div class="card card-spacing-home standard-hover-shadow mb-3" style="width: 18rem;">
+            <%= cl_image_tag annonce.photo, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+            <div class="card-body">
+              <h5 class="card-title"><%= annonce.titre %> contre <%= annonce.contre %></h5>
+              <p class="card-text"><%= annonce.description.first(20) %>...</p>
+              <%= link_to "Voir l'annonce", annonce_path(annonce), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        <% end %>
         <% end %>
       </div>
-      <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-        <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
-        <li><a>Posté par <%= annonce.user.pseudo %> le <%= annonce.created_at.strftime("%d %B, %Y") %></a></li>
-      </ul>
     </div>
-  <% end %>
-
-</div>
+  </div>

@@ -76,6 +76,10 @@
   border-top: 1px solid #E6E6E6;
 }
 
+.dropdown-toggle::after {
+  border: none !important;
+}
+
 .flex-nav-mobile {
   display:flex;
   align-items:center;
