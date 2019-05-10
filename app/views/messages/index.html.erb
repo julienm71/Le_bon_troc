@@ -1,0 +1,45 @@
+<div class="container">
+  <h3>Conversation avec <%= @message_to.pseudo %></h3>
+  <hr>
+  <% if @over_ten %>
+     <%= link_to 'Show Previous', '?m=all' %>
+  <% end %>
+
+  <div class="form-messages">
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <% user = User.find(message.user_id) %>
+          <div class="my-2">
+            <% if user == current_user %>
+              <div class="text-left"><strong>Moi</strong> <span style="font-weight:lighter;">
+                <%= message.message_time %>
+<!--                  <% if message.read %>
+                  - <i class="fas fa-check" style="color:green;"></i> Vu
+                <% end %>
+ -->                </span></div>
+              <div class="text-left"><%= message.body %></div>
+            <% else %>
+                <div class="text-right"><strong><%= user.pseudo %></strong> <span style="font-weight:lighter;">
+                <%= message.message_time %>
+<!--                  <% if message.read %>
+                 - <i class="fas fa-check" style="color:green;"></i> Vu
+                <% end %> -->
+                </span></div>
+              <div class="text-right"><%= message.body %></div>
+            <% end %>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <%= simple_form_for [@conversation, @message], html: {class: "my-2"} do |f| %>
+    <div class="form-group">
+      <%= f.text_area :body, class: "form-control" %>
+    </div>
+      <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
+    <div>
+      <%= f.submit "Envoyer", class: "btn btn-primary" %>
+    </div>
+
+  <% end %>
+</div>

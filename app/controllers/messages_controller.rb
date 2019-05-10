@@ -2,6 +2,10 @@ class MessagesController < ApplicationController
   before_action :conversation_instance
 
   def index
+    user1 = User.find(@conversation.sender_id)
+    user2 = User.find(@conversation.recipient_id)
+    @message_to = current_user == user1 ? user2 : user1
+
     @messages = @conversation.messages
     if @messages.length > 10
       @over_ten = true
@@ -12,10 +16,11 @@ class MessagesController < ApplicationController
       @messages = @conversation.messages
     end
     if @messages.last
-    if @messages.last.user_id != current_user.id
-      @messages.last.read = true;
+      @last_message = @messages.last
+      if @last_message.user_id != current_user.id
+        @last_message.read = true
+      end
     end
-  end
   @message = @conversation.messages.new
 end
 

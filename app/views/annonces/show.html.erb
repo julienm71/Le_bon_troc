@@ -1,22 +1,7 @@
 <div class="container">
-  <h3><%= @annonce.titre %> contre <%= @annonce.contre %></h3>
+  <h4><%= @annonce.titre %> contre <%= @annonce.contre %></h4>
   <p>Posté par <%= @annonce.user.pseudo %></p>
   <hr>
-<!--   <div class="flex-show">
-
-    <button title="Cliquez pour agrandir l'image" type="button" class="button-img-modal" data-toggle="modal" data-target="#image1-modal"><img src="<%= @annonce.photo %>" style="height:130px;width:175px;" alt="img error" class="product-image"></button>
-
-    <% if @annonce.photo2.file.nil? %>
-    <% else %>
-      <button title="Cliquez pour agrandir l'image" type="button" class="button-img-modal" data-toggle="modal" data-target="#image2-modal"><img src="<%= @annonce.photo2 %>" style="height:130px;width:175px;" alt="img error" class="product-image"></button>
-    <% end %>
-
-    <% if @annonce.photo3.file.nil? %>
-    <% else %>
-      <button title="Cliquez pour agrandir l'image" type="button" class="button-img-modal" data-toggle="modal" data-target="#image3-modal"><img src="<%= @annonce.photo3 %>" style="height:130px;width:175px;" alt="img error" class="product-image"></button>
-    <% end %>
-  </div> -->
-
   <div id="slide-annonce-show" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#slide-annonce-show" data-slide-to="0" class="active"></li>
@@ -47,145 +32,22 @@
           <span class="sr-only">Image suivante</span>
         </a>
       <% end %>
+    </div>
   </div>
 
   <hr>
-  <h3>Description</h3>
-  <p> - <%= @annonce.description %></p>
+  <h4>Description</h4>
+  <p> <i class="fas fa-chevron-right"></i> <%= @annonce.description %></p>
   <hr>
-  <h3>Raison(s)</h3>
-  <p> - <%= @annonce.raison %></p>
+  <h4>Raison(s)</h4>
+  <p> <i class="fas fa-chevron-right"></i>  <%= @annonce.raison %></p>
   <hr>
-  <h3>Mode(s) d'échange choisit par <%= @annonce.user.pseudo %> </h3>
-  <p> - <%= @typeechange_list[@annonce.typeechange] %></p>
+  <h4>Mode(s) d'échange choisit par <%= @annonce.user.pseudo %> </h4>
+  <p> <i class="fas fa-chevron-right"></i>  <%= @typeechange_list[@annonce.typeechange] %></p>
   <hr>
   <% if @annonce.autrepropositions %>
-      <% if user_signed_in? %>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#propose-modal-logged-in"> Proposer un autre objet</button>
-      <% else %>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#propose-modal-logged-out"> Proposer un autre objet</button>
-    <% end %>
+    <p> <i class="fas fa-chevron-right"></i> <%= @annonce.user.pseudo %> accepte d'autres propositions pour cet objet.</p>
   <% end %>
-  <% if user_signed_in? %>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contact-modal-logged-in"> Contacter la personne</button>
-  <% else %>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#contact-modal-logged-out"> Contacter la personne</button>
-  <% end %>
-
-  <% if user_signed_in? %>
-  <!-- modal propose logged in -->
-    <div class="modal fade" id="propose-modal-logged-in" tabindex="-1" role="dialog" aria-labelledby="propose-modal-logged-in" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="propose-modal-logged-in-title">Proposer un autre objet à <%= @annonce.user.pseudo %></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-  <!--      form send other objets -->
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- contact modal logged in -->
-    <div class="modal fade" id="contact-modal-logged-in" tabindex="-1" role="dialog" aria-labelledby="contact-modal-logged-in" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="contact-modal-logged-in-title">Coordonnées de <%= @annonce.user.pseudo %></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p><i class="fa fa-phone" style="color:#32B796;"></i> Téléphone: <%= @annonce.user.phone %></p>
-            <p><i class="fa fa-envelope" style="color:#32B796;"></i> Email: <%= @annonce.user.email %></p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  <% else %>
-    <!-- logged out modals -->
-    <div class="modal fade" id="propose-modal-logged-out" tabindex="-1" role="dialog" aria-labelledby="propose-modal-logged-out" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="propose-modal-title">Proposer un autre objet à <%= @annonce.user.pseudo %></h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p><i class="fa fa-times" style="color:red;"></i> Vous devez etre connecté pour pouvoir proposer un autre objet.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="modal fade" id="contact-modal-logged-out" tabindex="-1" role="dialog" aria-labelledby="contact-modal-logged-out" aria-hidden="true">
-      <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="contact-modal-title">Coordonnées de <%= @annonce.user.pseudo %> </h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p><i class="fa fa-times" style="color:red;"></i> Vous devez etre connecté pour acceder à ces informations.</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-  <% end %>
-
-<!-- img modals -->
-
-  <div class="modal fade" id="image1-modal" tabindex="-1" role="dialog" aria-labelledby="image1-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <img src="<%= @annonce.photo %>" style="height:500px;width:500px;" alt="img error">
-      </div>
-    </div>
-  </div>
-
-  <% if @annonce.photo2.file.nil? %>
-  <% else %>
-  <div class="modal fade" id="image2-modal" tabindex="-1" role="dialog" aria-labelledby="image2-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <img src="<%= @annonce.photo2 %>" style="height:500px;width:500px;" alt="img error">
-      </div>
-    </div>
-  </div>
-  <% end %>
-
-  <% if @annonce.photo2.file.nil? %>
-  <% else %>
-  <div class="modal fade" id="image3-modal" tabindex="-1" role="dialog" aria-labelledby="image3-modal" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <img src="<%= @annonce.photo3 %>" alt="img error">
-      </div>
-    </div>
-  </div>
-  <% end %>
-
+  <hr>
+  <%= link_to 'Contacter cette personne', conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
 </div>
