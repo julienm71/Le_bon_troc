@@ -41,8 +41,8 @@
   font-size: 14px;
 }
 .navbar-lebontroc-link:hover {
-  color: #469AE0;
-  text-decoration: none;
+  color: #469AE0 !important;
+  text-decoration: none !important;
 }
 
 /* Dropdown menu */
@@ -60,8 +60,8 @@
   padding: 10px 20px;
 }
 .navbar-lebontroc-dropdown-menu li > a:hover {
-  background: transparent !important;
-  color: black !important;
+  color: #469AE0 !important;
+  text-decoration: none !important;
 }
 .navbar-lebontroc-dropdown-menu:before {
   content: ' ';

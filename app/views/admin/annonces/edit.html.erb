@@ -22,9 +22,13 @@
       </div>
       <hr>
       <div class="form-group">
-        <%= f.label :photo, 'Choissisez une photo de votre produit depuis votre ordinateur: (175x130)', required: true, error: 'Vous devez mettre une photo de votre produit.' %>
-        <%= f.input :photo, label: false %>
-        <%= f.input :photo_cache, as: :hidden %>
+        <%= f.label :photo, 'Choissisez au moins une photo de votre produit depuis votre ordinateur:' %>
+        <%= f.input :photo, label: false, required: true, :input_html => { :value => @annonce.photo } %>
+        <div class="text-right"><%= cl_image_tag @annonce.photo, alt: "Image", crop: :scale, width: 200, height: 150%></div>
+        <%= f.input :photo2, label: false, required: false, :input_html => { :value => @annonce.photo2 } %>
+        <div class="text-right"><%= cl_image_tag @annonce.photo2, alt: "Image", crop: :scale, width: 200, height: 150%></div>
+        <%= f.input :photo3, label: false, required: false, :input_html => { :value => @annonce.photo3 } %>
+        <div class="text-right"><%= cl_image_tag @annonce.photo3, alt: "Image", crop: :scale, width: 200, height: 150%></div>
       </div>
       <hr>
       <div class="form-group">
