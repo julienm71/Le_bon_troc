@@ -49,5 +49,18 @@
     <p> <i class="fas fa-chevron-right"></i> <%= @annonce.user.pseudo %> accepte d'autres propositions pour cet objet.</p>
   <% end %>
   <hr>
-  <%= link_to 'Contacter cette personne', conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
+  <% if current_user %>
+    <% if @annonce.user.pseudo != current_user.pseudo  %>
+      <%= link_to 'Contacter cette personne', conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
+    <% else %>
+      <div class="alert alert-primary" role="alert">
+        <strong><i class="fas fa-check"></i> Cette annonce vous appartient</strong>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    <% end %>
+  <% else %>
+    <%= link_to 'Contacter cette personne', conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
+  <% end %>
 </div>
