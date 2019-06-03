@@ -4,21 +4,44 @@
 }
 
 .card-category {
-    width:350px;
-background-size: cover;
-    background-position: center;
-    height: 180px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    font-size: 24px;
-    font-weight: bold;
-    text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
-    border-radius: 5px;
-    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  width:350px;
+  background-size: cover;
+  background-position: center;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
 }
 
 .cards a {
   color: white;
+}
+
+.message-sender {
+  width:250px;
+  background-color: #469AE0;
+  border-radius:3px;
+  padding:10px;
+}
+
+.message-receiver {
+  width:250px;
+  margin-left:72%;
+  background-color: #49A770;
+  border-radius:3px;
+  padding:10px;
+}
+
+.form-messages {
+  color:white;
+  border: 1px solid #eee;
+  border-radius:3px;
+  padding: 16px;
+  transition: all 0.5s ease-in-out;
 }
