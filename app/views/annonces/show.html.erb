@@ -50,7 +50,7 @@
   <% end %>
   <hr>
   <% if current_user %>
-    <% if @annonce.user.pseudo != current_user.pseudo  %>
+    <% if @annonce.user != current_user  %>
       <%= link_to 'Contacter cette personne', conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
     <% else %>
       <div class="alert alert-primary" role="alert">

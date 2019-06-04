@@ -128,9 +128,6 @@
             <td><%= user.admin %></td>
             <td></td>
             <td class="flex">
-
-  <!--             <%= link_to "", admin_users_modal_settings_path(user), method: :get, id: 'trigger-modal', title: "Voir les annonces de l'utilisateur", :class => "fa fa-eye" %> -->
-
               <%= link_to "", edit_admin_user_path(user), title: "Modifier l'utilisateur", :class => "fa fa-pencil-alt" %>
               <%= link_to "", admin_user_path(user), method: :delete, title: "Supprimer l'utilisateur", data: { confirm: "Etes vous sur de vouloir supprimer cette utilisateur ?" }, :class => "far fa-trash-alt"%>
             </td>
@@ -142,28 +139,3 @@
 
   </div>
 </div>
-
-<!-- <div class="modal fade" id="user_annonces_modal" tabindex="-1" role="dialog" aria-labelledby="user_annonces_modal" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="user_annonces_modal_title">Annonces de <%= @current_modal_user %> </h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <% if @annonces_user.nil? %>
-          <p>Cette utilisateur ne possède aucune annonce.</p>
-        <% else %>
-          <% @annonces_user.each do |annonce| %>
-          <p><%= annonce.titre %></p>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div> -->

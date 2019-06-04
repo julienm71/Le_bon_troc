@@ -23,7 +23,7 @@
             <p><a>Status: <%= @status_list[annonce.status] %></a></p>
           </div>
           <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-            <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+            <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li>
             <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
             <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
             <li><%= link_to "", edit_admin_user_path(annonce.user), title: "Voir l'utilisateur qui à posté cette annonce: #{annonce.user.pseudo}", :class => "fas fa-user"%></li>
@@ -47,7 +47,7 @@
             <p><a>Status: <%= @status_list[annonce.status] %></a></p>
           </div>
           <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-            <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+            <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li>
             <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
             <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
             <li><%= link_to "", edit_admin_user_path(annonce.user), title: "Voir l'utilisateur qui à posté cette annonce: #{annonce.user.pseudo}", :class => "fas fa-user"%></li>
@@ -70,7 +70,7 @@
             <p><a>Status: <%= @status_list[annonce.status] %></a></p>
           </div>
           <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-            <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+            <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li>
             <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
             <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
             <li><%= link_to "", edit_admin_user_path(annonce.user), title: "Voir l'utilisateur qui à posté cette annonce: #{annonce.user.pseudo}", :class => "fas fa-user"%></li>
@@ -93,7 +93,7 @@
             <p><a>Status: <%= @status_list[annonce.status] %></a></p>
           </div>
           <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-            <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+            <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li>
             <li><%= link_to "",  edit_admin_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
             <li><%= link_to "", admin_annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
             <li><%= link_to "", edit_admin_user_path(annonce.user), title: "Voir l'utilisateur qui à posté cette annonce: #{annonce.user.pseudo}", :class => "fas fa-user"%></li>

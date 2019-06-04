@@ -5,11 +5,11 @@
      <%= link_to 'Show Previous', '?m=all' %>
   <% end %>
 
-  <div class="form-messages">
+  <div class="form-messages d-none d-md-block">
     <% @messages.each do |message| %>
       <% if message.body %>
         <% user = User.find(message.user_id) %>
-          <div class="my-2">
+          <div class="my-3">
             <% if user == current_user %>
               <div class="message-sender">
                 <div class="text-left">
@@ -19,6 +19,31 @@
               </div>
             <% else %>
               <div class="message-receiver">
+                <div class="text-right">
+                  <strong><%= user.pseudo %></strong> <span style="font-weight:lighter;"><%= message.message_time %></span>
+                </div>
+                <div class="text-right"><%= message.body %></div>
+              </div>
+            <% end %>
+          </div>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="form-messages d-block d-md-none">
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <% user = User.find(message.user_id) %>
+          <div class="my-3">
+            <% if user == current_user %>
+              <div class="message-sender">
+                <div class="text-left">
+                  <strong>Moi</strong> <span style="font-weight:lighter;"><%= message.message_time %></span>
+                </div>
+                <div class="text-left"><%= message.body %></div>
+              </div>
+            <% else %>
+              <div class="message-receiver-mobile">
                 <div class="text-right">
                   <strong><%= user.pseudo %></strong> <span style="font-weight:lighter;"><%= message.message_time %></span>
                 </div>

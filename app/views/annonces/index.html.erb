@@ -33,7 +33,7 @@
           <% end %>
         </div>
         <ul class="list-inline product-controls product-controls-hidden hidden-sm d-none d-md-block">
-          <li><%= link_to "VOIR L'ANNONCE", annonce_path(annonce) %></li>
+          <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li>
           <li><a>Posté par <%= annonce.user.pseudo %> le <%= annonce.created_at.strftime("%d %B, %Y") %></a></li>
         </ul>
       </div>
