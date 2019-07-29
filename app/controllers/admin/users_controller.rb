@@ -9,20 +9,6 @@ before_action :allow_without_password, only: [:update]
     @users_admin = User.where(admin: true).uniq
   end
 
-  # def modal_settings
-  #   current_user = User.find(params[:format])
-  #   @current_modal_user = current_user
-
-  #   @status_list = ["en attente", "refusé", "accepté"]
-  #   @annonces =  Annonce.all.order(created_at: :desc)
-  #   @annonces_user = []
-  #   @annonces.each do |annonce|
-  #     if annonce.user_id == current_user.id
-  #       @annonces_user << annonce
-  #     end
-  #   end
-  # end
-
   def new
     @user = User.new
   end

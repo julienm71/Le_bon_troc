@@ -5,6 +5,7 @@ class MessagesController < ApplicationController
     user1 = User.find(@conversation.sender_id)
     user2 = User.find(@conversation.recipient_id)
     @message_to = current_user == user1 ? user2 : user1
+    @message_to_annonces = Annonce.all.where(id:@message_to)
 
     @messages = @conversation.messages
     if @messages.length > 10

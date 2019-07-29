@@ -39,8 +39,8 @@
         </div>
       <% else %>
         <!-- Login link (when logged out) -->
-        <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-lebontroc-item navbar-lebontroc-link btn btn-primary", style: 'color:white;' %>
-        <%= link_to "Inscription", new_user_registration_path, class: "navbar-lebontroc-item navbar-lebontroc-link btn btn-primary", style: 'color:white;margin-left:10px;' %>
+        <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-lebontroc-item btn btn-outline-primary" %>
+        <%= link_to "Inscription", new_user_registration_path, class: "navbar-lebontroc-item btn btn-outline-primary", style: 'margin-left:10px;' %>
       <% end %>
     </div>
   </div>

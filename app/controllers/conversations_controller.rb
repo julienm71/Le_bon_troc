@@ -14,12 +14,16 @@ class ConversationsController < ApplicationController
     else
       @conversation = Conversation.create!(conversation_params)
     end
-    redirect_to conversation_messages_path(@conversation)
+    if params[:action_annonce].present?
+      redirect_to conversation_messages_path(@conversation) + '?action_annonce=show_modal_echange'
+    else
+      redirect_to conversation_messages_path(@conversation)
+    end
   end
 
   private
 
   def conversation_params
-  params.permit(:sender_id, :recipient_id)
+    params.permit(:sender_id, :recipient_id)
   end
 end

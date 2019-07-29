@@ -1,4 +1,4 @@
-class Admin::ConflictsController < ApplicationController
+class Admin::conflitsController < ApplicationController
 before_action :authenticate_admin!
 
   def index

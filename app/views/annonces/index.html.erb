@@ -19,25 +19,25 @@
   <hr>
   <div class="d-none d-md-block">
     <% if !@annonces.nil? %>
-    <% @annonces.each do |annonce| %>
-      <div class="product">
-        <div class='product-upvote'>
-        </div>
-        <img src="<%= annonce.photo %>" alt="kudoz" class="product-image d-none d-md-block">
-        <div class='product-body'>
-          <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
-          <p><%= annonce.description.first(20) %>...</p>
-          <br />
-          <% if annonce.autrepropositions %>
-          <p><a>Cette personne est libre à d'autre propositions</a></p>
-          <% end %>
-        </div>
-        <ul class="list-inline product-controls product-controls-hidden hidden-sm d-none d-md-block">
-          <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li>
-          <li><a>Posté par <%= annonce.user.pseudo %> le <%= annonce.created_at.strftime("%d %B, %Y") %></a></li>
-        </ul>
-      </div>
-    <% end %>
+      <% @annonces.each do |annonce| %>
+        <a href="<%= annonce_path(annonce) %>">
+          <div class="product">
+            <img src="<%= annonce.photo %>" alt="img" class="product-image d-none d-md-block">
+            <div class='product-body'>
+              <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+              <p><%= annonce.description.first(20) %>...</p>
+              <br />
+              <% if annonce.autrepropositions %>
+              <p><a>Cette personne est libre à d'autre propositions</a></p>
+              <% end %>
+            </div>
+            <ul class="list-inline product-controls product-controls-hidden hidden-sm d-none d-md-block">
+              <!-- <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li> -->
+              <li><a>Posté par <%= annonce.user.pseudo %> le <%= annonce.created_at.strftime("%d %B, %Y") %></a></li>
+            </ul>
+          </div>
+        </a>
+      <% end %>
     <% end %>
   </div>
 
@@ -51,7 +51,7 @@
             <div class="card-body">
               <h5 class="card-title"><%= annonce.titre %> contre <%= annonce.contre %></h5>
               <p class="card-text"><%= annonce.description.first(20) %>...</p>
-              <%= link_to "Voir l'annonce", annonce_path(annonce), class: 'btn btn-primary' %>
+              <%= link_to "Voir l'annonce", annonce_path(annonce), class: 'btn btn-block btn-primary', style: 'position:absolute;bottom:10px;left:14px;width:90%;' %>
             </div>
           </div>
         <% end %>

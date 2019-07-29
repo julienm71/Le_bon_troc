@@ -52,6 +52,15 @@ h1, h2, h3 { margin-top: 20px;}
   justify-content: space-evenly;
 }
 
+.flex-center {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+
 .flex h1 {
   margin-bottom:0px;
 }

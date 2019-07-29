@@ -1,3 +1,6 @@
+<% content_for :javascript_includes do %>
+  <%= javascript_include_tag "echange.js" %>
+<% end %>
 <div class="container">
   <h3>Conversation avec <%= @message_to.pseudo %></h3>
   <hr>
@@ -68,6 +71,82 @@
     <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
   <% end %>
   <div class="flex">
-    <%= link_to '<i class="fas fa-exchange-alt"></i> Demander un échange'.html_safe, root_path, class: "btn btn-primary" %>
+    <%= link_to '<i class="fas fa-exchange-alt"></i> Demander un échange'.html_safe, 'javascript:trigger_modal_echange()', class: "btn btn-outline-primary" %>
+    <input type="hidden" id="user_id_receiver" value="<%= @message_to.id %>">
+  </div>
+</div>
+
+<script type="text/javascript">
+  document.addEventListener('DOMContentLoaded', (event) => {
+    <% if params[:action_annonce].present? && params[:action_annonce] == 'show_modal_echange' %>
+      trigger_modal_echange();
+    <% end %>
+  })
+</script>
+
+<div class="modal fade" id="modal-echange" tabindex="-1" role="dialog" aria-labelledby="modal-echange-title" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modal-echange-title"><i class="fas fa-exchange-alt"></i> Demander un échange d'objet à <%= @message_to.pseudo %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="my-2 col-md-12">
+          <select id="select-annonce" class="form-control" style="color:#469AE0;border:1px solid #469AE0;">
+            <option>Séléctionnez une annonce</option>
+            <% if !@message_to_annonces.nil? %>
+              <% @message_to_annonces.each do |annonce| %>
+                <option value="<%= annonce.id %>"><b><%= annonce.titre %></b> contre <b><%= annonce.contre %></b></option>
+              <% end %>
+            <% end %>
+          </select>
+        </div>
+        <div class="row" id="details-annonce" style='display:none;padding:10px;'>
+          <%= simple_form_for Echange.new do |f| %>
+          <div class="col-md-12">
+            <hr>
+            <p>Vous avez séléctionnez : <span id="echange-selected-annonce"></span></p>
+            <p>L'objet demandé pour cette échange est : <span class="objet-demande"></span></p>
+            <hr>
+            <div id='proposer-autre-objet' style="display:none;">
+              <p><b><%= @message_to.pseudo %></b> est ouvert à d'autres propositions d'objets, souhaitez vous proposer un autre objet ?</p>
+              <div class="flex-center">
+                <button id="btn-non-autre-objet" class="ml-1 mr-1 btn btn-outline-danger btn-block">Non</button>
+                <button id="btn-oui-autre-objet" class="ml-1 mr-1 btn btn-outline-success btn-block">Oui</button>
+              </div>
+            </div>
+            <div id='objet-contre' style="display:none;">
+              <p>Veuillez télécharger au moins une image de votre <span class="objet-demande"></span> : </p>
+              <%= f.error_notification %>
+              <%= f.input :objetdemandeur_photo1, label: false, required: true %>
+              <%= f.input :objetdemandeur_photo2, label: false, required: false %>
+              <%= f.input :objetdemandeur_photo3, label: false, required: false %>
+              <input type="hidden" id="objetdemandeur_titre" name="objetdemandeur_titre" value="" required="true">
+            </div>
+
+            <div id='objet-contre-nouveau' style="display:none;">
+              <p>Veuillez renseigné le nom de cet objet :</p>
+              <%= f.input :objetdemandeur_titre, label: false, required: true %>
+              <p>Veuillez télécharger au moins une image de l'objet que vous souhaitez proposer :</p>
+              <%= f.error_notification %>
+              <%= f.input :objetdemandeur_photo1, label: false, required: true %>
+              <%= f.input :objetdemandeur_photo2, label: false, required: false %>
+              <%= f.input :objetdemandeur_photo3, label: false, required: false %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-success" disabled="true">Demander un échange pour cet objet</button> -->
+        <%= button_tag type: 'submit', class: "btn btn-outline-success btn-block" do %>
+          <i class='fas fa-check'></i> Demander un échange pour cet objet
+        <% end %>
+      </div>
+    </div>
+    <% end %>
   </div>
 </div>

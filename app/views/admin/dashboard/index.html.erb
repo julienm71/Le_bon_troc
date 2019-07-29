@@ -1,10 +1,9 @@
 <%= render 'admin/shared/navbar-admin' %>
-
 <div class="container flex-evenly">
   <div class="card card-dashboard" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title"><i class="fas fa-users"></i> Nombre d'utilisateurs</h5>
-      <p class="card-text"><%= @nb_users %></p>
+      <p class="card-text"><%= @nb_users %> utilisateurs</p>
     </div>
   </div>
   <div class="card card-dashboard" style="width: 18rem;">
@@ -17,6 +16,12 @@
     <div class="card-body">
       <h5 class="card-title"><i class="fas fa-times"></i> Nombre de conflits</h5>
       <p class="card-text"><%= @nb_conflits %> conflits</p>
+    </div>
+  </div>
+  <div class="card card-dashboard" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><i class="fas fa-exchange-alt"></i> Nombre d'échanges</h5>
+      <p class="card-text"><%= @nb_echanges %> échanges en cours</p>
     </div>
   </div>
 </div>
