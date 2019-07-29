@@ -3,7 +3,9 @@ before_action :authenticate_admin!
 
   def index
     @current_nav = "Dashboard"
-
+    @nb_users = User.all.count
+    @nb_annonces = Annonce.all.count
+    @nb_conflits = '0'
   end
 
   private

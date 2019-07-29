@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-3">
   <h4><%= @annonce.titre %> contre <%= @annonce.contre %></h4>
   <p>Posté par <%= @annonce.user.pseudo %></p>
   <hr>
@@ -51,7 +51,8 @@
   <hr>
   <% if current_user %>
     <% if @annonce.user != current_user  %>
-      <%= link_to 'Contacter cette personne', conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
+      <%= link_to '<i class="fas fa-envelope"></i> Contacter cette personne'.html_safe, conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
+      <%= link_to '<i class="fas fa-exchange-alt"></i> Demander un échange'.html_safe, root_path, class: 'btn btn-primary'%>
     <% else %>
       <div class="alert alert-primary" role="alert">
         <strong><i class="fas fa-check"></i> Cette annonce vous appartient</strong>
@@ -61,6 +62,6 @@
       </div>
     <% end %>
   <% else %>
-    <%= link_to 'Contacter cette personne', conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
+    <%= link_to '<i class="fas fa-envelope"></i> Contacter cette personne'.html_safe, conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
   <% end %>
 </div>

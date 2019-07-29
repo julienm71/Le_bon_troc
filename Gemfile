@@ -9,6 +9,7 @@ gem 'puma'
 gem 'rails', '5.2.0'
 gem 'redis'
 
+gem 'bundler'
 gem 'autoprefixer-rails'
 gem 'bootstrap', '~> 4.2.1'
 gem 'money-rails'

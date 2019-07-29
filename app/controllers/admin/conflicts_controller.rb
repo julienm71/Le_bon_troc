@@ -3,7 +3,6 @@ before_action :authenticate_admin!
 
   def index
     @current_nav = "Conflits"
-
   end
 
   private

@@ -58,10 +58,16 @@
   <%= simple_form_for [@conversation, @message], html: {class: "my-2"} do |f| %>
     <div class="input-group mb-3">
       <%= f.text_field :body, class: "form-control", placeholder: "Message..." %>
-    <div class="input-group-append">
-      <%= f.submit 'Send', class: "btn btn-outline-primary" %>
-    </div>
+      <div class="input-group-append">
+        <!-- <%= f.submit '<i class="far fa-paper-plane"></i> Send', class: "btn btn-outline-primary" %> -->
+        <%= button_tag type: 'submit', class: "btn btn-outline-primary" do %>
+                <i class="far fa-paper-plane"></i> Send
+            <% end %>
+      </div>
     </div>
     <%= f.text_field :user_id, value: current_user.id, type: "hidden"  %>
   <% end %>
+  <div class="flex">
+    <%= link_to '<i class="fas fa-exchange-alt"></i> Demander un échange'.html_safe, root_path, class: "btn btn-primary" %>
+  </div>
 </div>
