@@ -6,7 +6,7 @@ function trigger_modal_echange() {
 $('select#select-annonce').on('change', function() {
   $.ajax({
     type: "GET",
-    url: "/ajax_modal_get_infos_annonce",
+    url: "/ajax_get_annonce_infos_for_modal",
     data: {
       annonce_id : $('select#select-annonce').val()
     },
@@ -15,16 +15,21 @@ $('select#select-annonce').on('change', function() {
     success: function(data){
       data = data[0];
       window.data = data;
-      console.log(data);
-      $('#echange-selected-annonce').html('<b>' + data.titre + '</b> contre <b>' + data.contre + '</b>');
+      $('#echange-selected-annonce').html('<b>' + data.titre + '</b>');
       $('span.objet-demande').html('<b>' + data.contre + '</b>');
+      $('#modal-annonceid-value').val(data.id);
       if(data.autrepropositions === true){
         $('#proposer-autre-objet').show();
+      } else {
+        $('#objetdemandeur_titre').val($('span.objet-demande').text());
+        $('#objetdemandeur_titre').text($('span.objet-demande').text());
+        $('#objet-contre').show();
       }
       $('#details-annonce').show(200);
     }
   })
 });
+
 
 $('#btn-non-autre-objet').on('click', function() {
   $('#proposer-autre-objet').fadeOut(200);
@@ -36,12 +41,21 @@ $('#btn-non-autre-objet').on('click', function() {
 $('#btn-oui-autre-objet').on('click', function() {
   $('#proposer-autre-objet').fadeOut(200);
   $("#objetdemandeur_titre").prop('disabled', false);
+  $('span.objet-demande').html('<b>nouvel objet</b>');
   $('#objet-contre').fadeIn(300);
 });
 
-$('#btn-oui-autre-objet, #btn-non-autre-objet').on('click', function() {
-  $('#modal-annonceid-value').val(data.id);
+$('#btn-non-autre-objet').on('click', function() {
+  $('#proposer-autre-objet').fadeOut(200);
+  $('#objetdemandeur_titre').val($('span.objet-demande').text());
+  $('#objetdemandeur_titre').text($('span.objet-demande').text());
+  $('#objet-contre').fadeIn(300);
 });
+
+$('#objetdemandeur_titre').on('keyup', function() {
+  $('#nouvel-objet').empty().html('<b>' + $('#objetdemandeur_titre').val() + '</b>')
+});
+
 
 $('#modal-typeechange-main').on('change', function() {
   if($(this).is(":checked")) {

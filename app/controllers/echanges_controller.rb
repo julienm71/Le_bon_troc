@@ -10,7 +10,7 @@ class EchangesController < ApplicationController
   end
 
   def create
-    @echange = Annonce.new(echange_params.merge(proprietaire_accept: false))
+    @echange = Echange.new(echange_params.merge(proprietaire_accept: false))
     @echange.save
 
     redirect_to vos_echanges_path
@@ -27,8 +27,8 @@ class EchangesController < ApplicationController
 
   def update
     @echange = Echange.find(params[:id])
-    if (echange_params[:] == "")
-      redirect_to edit_echange_path(@annonce)
+    if (echange_params[:proprietaire_accept] == "")
+      redirect_to edit_echange_path(@echange)
       flash[:alert] = "Veuillez renseigner touts les champs.".html_safe
     else
       @echange.update(echange_params)
@@ -60,7 +60,7 @@ class EchangesController < ApplicationController
     @echange = Echange.where(id: params[:annonce_id])
   end
 
-  def infos_selected_anonce_modal
+  def get_annonce_infos_for_modal
     @annonce = Annonce.where(id: params[:annonce_id])
     render :json => ActiveSupport::JSON.encode(@annonce)
   end
