@@ -1,3 +1,4 @@
+var default_modal_body = $("#modal-echange").clone();
 function trigger_modal_echange() {
   $("#modal-echange").modal('show');
 }
@@ -13,6 +14,7 @@ $('select#select-annonce').on('change', function() {
     dataType: "json",
     success: function(data){
       data = data[0];
+      window.data = data;
       console.log(data);
       $('#echange-selected-annonce').html('<b>' + data.titre + '</b> contre <b>' + data.contre + '</b>');
       $('span.objet-demande').html('<b>' + data.contre + '</b>');
@@ -30,3 +32,53 @@ $('#btn-non-autre-objet').on('click', function() {
   $('#objetdemandeur_titre').text($('span.objet-demande').text());
   $('#objet-contre').fadeIn(300);
 });
+
+$('#btn-oui-autre-objet').on('click', function() {
+  $('#proposer-autre-objet').fadeOut(200);
+  $("#objetdemandeur_titre").prop('disabled', false);
+  $('#objet-contre').fadeIn(300);
+});
+
+$('#btn-oui-autre-objet, #btn-non-autre-objet').on('click', function() {
+  $('#modal-annonceid-value').val(data.id);
+});
+
+$('#modal-typeechange-main').on('change', function() {
+  if($(this).is(":checked")) {
+    $('#modal-typeechange-value').val(0);
+    $('#modal-typeechange-poste').prop('disabled', true);
+    $('modal-submit').attr('disabled', false);
+  } else {
+    $('#modal-typeechange-poste').prop('disabled', false);
+    $('#modal-typeechange-value').val('');
+    $('modal-submit').attr('disabled', true);
+  }
+  check_all_fields_filled();
+});
+
+$('#modal-typeechange-poste').on('change', function() {
+  if($(this).is(":checked")) {
+    $('#modal-typeechange-value').val(1);
+    $('#modal-typeechange-main').prop('disabled', true);
+  } else {
+    $('#modal-typeechange-main').prop('disabled', false);
+    $('#modal-typeechange-value').val('');
+  }
+  check_all_fields_filled();
+});
+
+function check_all_fields_filled() {
+  if($('#objetdemandeur_titre').text()!=""
+    && $('#echange_objetdemandeur_photo1').val()!=""
+    && $('#modal-demandeurid-value').val()!=""
+    && $('#modal-annonceid-value').val()!=""
+    && $('#modal-proprietaireid-value').val()!=""
+    && $('#modal-typeechange-value-value').val()!="") {
+      $('div#modal-footer').fadeIn(300);
+  }
+}
+
+// RESET MODAL ON CLOSE ?
+// $('#modal-echange').on('hidden.bs.modal', function (e) {
+//   $("#modal-echange").empty().html(default_modal_body);
+// })
