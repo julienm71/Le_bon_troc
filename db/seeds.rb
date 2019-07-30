@@ -1,5 +1,7 @@
 User.destroy_all
 Annonce.destroy_all
+Message.destroy_all
+Conversation.destroy_all
 
 puts "--> Database erased."
 puts "--> Database reconstruction in progress..."
