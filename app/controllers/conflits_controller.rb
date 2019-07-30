@@ -1,2 +1,0 @@
-class ConflitsController < ApplicationController
-end
