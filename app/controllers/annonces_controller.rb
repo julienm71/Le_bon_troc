@@ -57,7 +57,6 @@ class AnnoncesController < ApplicationController
   def create
     @annonce = Annonce.new(annonce_params.merge(status: 0, user_id: current_user.id))
     @annonce.save
-
     redirect_to vos_annonces_path
     flash[:notice] = "Votre annonce à bien été créé. Vous pouvez la consulter dans la rubrique 'Mes annonces'.".html_safe
 

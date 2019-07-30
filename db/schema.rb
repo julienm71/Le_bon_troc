@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_30_065544) do
+ActiveRecord::Schema.define(version: 2019_07_30_135715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,14 +43,15 @@ ActiveRecord::Schema.define(version: 2019_07_30_065544) do
     t.integer "demandeur_id"
     t.integer "proprietaire_id"
     t.integer "annonce_id"
-    t.boolean "proprietaire_accept"
-    t.integer "typeechange"
+    t.boolean "proprietaire_accept", default: false
+    t.integer "typeechange", default: 0
     t.string "objetdemandeur_photo1"
-    t.string "objetdemandeur_photo2"
-    t.string "objetdemandeur_photo3"
+    t.string "objetdemandeur_photo2", default: "none"
+    t.string "objetdemandeur_photo3", default: "none"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "objetdemandeur_titre"
+    t.string "status", default: "en_attente"
   end
 
   create_table "messages", force: :cascade do |t|

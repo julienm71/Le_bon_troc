@@ -1,0 +1,200 @@
+<div class="container">
+  <h3>Liste des échanges que vous avez demandé</h3>
+  <hr>
+  <div id="parent-echange-demande" class="row flex">
+    <div class="col-md-3">
+      <div class="nav flex-column nav-pills border-vos-echanges" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#tab-en-attente" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-user-clock"></i> En attente</a>
+
+        <a class="nav-link" style="color:#FDB631;" id="v-pills-home-tab" data-toggle="pill" href="#tab-en-cours" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-spinner"></i> En cours</a>
+
+        <a class="nav-link" style="color:#32B796;" id="v-pills-profile-tab" data-toggle="pill" href="#tab-finit" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-check"></i> Finit</a>
+
+        <a class="nav-link" style="color:#EE5F5B;" id="v-pills-messages-tab" data-toggle="pill" href="#tab-en-conflit" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="fas fa-exclamation-triangle"></i> En conflit</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="tab-content border-vos-echanges" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="tab-en-attente" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en attente dacceptation par l'utilisateur</p>
+          <hr class='echange-tab-title'>
+          <% @echanges_demande_user.each do |echange| %>
+            <% if echange.status == 'en_attente' %>
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-outline-secondary mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                  </a>
+                  <div class="collapse mb-3" id="echange-<%= echange.id %>">
+                    <div class="card card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="tab-pane fade show" id="tab-en-cours" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en cours d'échange</p>
+          <hr class='echange-tab-title'>
+          <% @echanges_demande_user.each do |echange| %>
+            <% if echange.status == 'en_cours' %>
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-outline-warning mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                  </a>
+                  <div class="collapse mb-3" id="echange-<%= echange.id %>">
+                    <div class="card card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="tab-finit" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+          <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange terminé sans conflits</p>
+          <hr class='echange-tab-title'>
+          <% @echanges_demande_user.each do |echange| %>
+            <% if echange.status == 'finit' %>
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-outline-success mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                  </a>
+                  <div class="collapse mb-3" id="echange-<%= echange.id %>">
+                    <div class="card card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="tab-en-conflit" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+          <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en conflit</p>
+          <hr class='echange-tab-title'>
+          <% @echanges_demande_user.each do |echange| %>
+            <% if echange.status == 'en_conflits' %>
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-outline-danger mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                  </a>
+                  <div class="collapse mb-3" id="echange-<%= echange.id %>">
+                    <div class="card card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h3>Liste des échanges que d'autres utilisateurs vous ont demandé</h3>
+  <hr>
+<div id="parent-echange-demande" class="row flex">
+    <div class="col-md-3">
+      <div class="nav flex-column nav-pills border-vos-echanges" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#tab-autre-en-attente" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-user-clock"></i> En attente</a>
+
+        <a class="nav-link" style="color:#FDB631;" id="v-pills-home-tab" data-toggle="pill" href="#tab-autre-en-cours" role="tab" aria-controls="v-pills-home" aria-selected="true"><i class="fas fa-spinner"></i> En cours</a>
+
+        <a class="nav-link" style="color:#32B796;" id="v-pills-profile-tab" data-toggle="pill" href="#tab-autre-finit" role="tab" aria-controls="v-pills-profile" aria-selected="false"><i class="fas fa-check"></i> Finit</a>
+
+        <a class="nav-link" style="color:#EE5F5B;" id="v-pills-messages-tab" data-toggle="pill" href="#tab-autre-en-conflit" role="tab" aria-controls="v-pills-messages" aria-selected="false"><i class="fas fa-exclamation-triangle"></i> En conflit</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="tab-content border-vos-echanges" id="v-pills-tabContent">
+        <div class="tab-pane fade show active" id="tab-autre-en-attente" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en attente de votre acceptation</p>
+          <hr class='echange-tab-title'>
+          <% @echanges_demande_autre_user.each do |echange| %>
+            <% if echange.status == 'en_attente' %>
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-outline-secondary mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                  </a>
+                  <div class="collapse mb-3" id="echange-<%= echange.id %>">
+                    <div class="card card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="tab-pane fade show" id="tab-autre-en-cours" role="tabpanel" aria-labelledby="v-pills-home-tab">
+          <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en cour d'échange</p>
+          <hr class='echange-tab-title'>
+          <% @echanges_demande_autre_user.each do |echange| %>
+            <% if echange.status == 'en_cours' %>
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-outline-warning mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                  </a>
+                  <div class="collapse mb-3" id="echange-<%= echange.id %>">
+                    <div class="card card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="tab-autre-finit" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+          <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange terminé sans conflit</p>
+          <hr class='echange-tab-title'>
+          <% @echanges_demande_autre_user.each do |echange| %>
+            <% if echange.status == 'finit' %>
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-outline-success mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                  </a>
+                  <div class="collapse mb-3" id="echange-<%= echange.id %>">
+                    <div class="card card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+        <div class="tab-pane fade" id="tab-autre-en-conflit" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+          <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en conflit</p>
+          <hr class='echange-tab-title'>
+          <% @echanges_demande_autre_user.each do |echange| %>
+            <% if echange.status == 'en_conflits' %>
+              <div class="row">
+                <div class="col-md-12">
+                  <a class="btn btn-outline-danger mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                  </a>
+                  <div class="collapse mb-3" id="echange-<%= echange.id %>">
+                    <div class="card card-body">
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

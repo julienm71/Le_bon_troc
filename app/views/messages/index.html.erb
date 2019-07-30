@@ -96,66 +96,69 @@
       <div class="modal-body">
         <div class="row">
           <div class="my-2 col-md-12">
-          <select id="select-annonce" class="form-control" style="color:#469AE0;border:1px solid #469AE0;">
-            <option>Séléctionnez un objet que l'utilisateur souhaite échanger</option>
-            <% if !@message_to_annonces.nil? %>
-              <% @message_to_annonces.each do |annonce| %>
-                <option value="<%= annonce.id %>"><b><%= annonce.titre %></b></option>
+            <select id="select-annonce" class="form-control" style="color:#469AE0;border:1px solid #469AE0;">
+              <option>Séléctionnez un objet que l'utilisateur souhaite échanger</option>
+              <% if !@message_to_annonces.nil? %>
+                <% @message_to_annonces.each do |annonce| %>
+                  <option value="<%= annonce.id %>"><b><%= annonce.titre %></b></option>
+                <% end %>
               <% end %>
-            <% end %>
-          </select>
-        </div>
-        <div class="row" id="details-annonce" style='display:none;padding:10px;'>
-          <%= simple_form_for Echange.new do |f| %>
-          <div class="col-md-12">
-            <hr>
-            <p>Vous avez séléctionnez : <span id="echange-selected-annonce"></span></p>
-            <p>L'objet demandé pour cette échange est : <span class="objet-demande"></span></p>
-            <hr>
-            <div id='proposer-autre-objet' style="display:none;">
-              <p><b><%= @message_to.pseudo %></b> est ouvert à d'autres propositions d'objets, souhaitez vous proposer un autre objet ?</p>
-              <div class="flex-center">
-                <button id="btn-non-autre-objet" class="ml-1 mr-1 btn btn-outline-danger btn-block">Non</button>
-                <button id="btn-oui-autre-objet" class="ml-1 mr-1 btn btn-outline-success btn-block">Oui</button>
-              </div>
-            </div>
-            <div id='objet-contre' style="display:none;">
-              <p>Veuillez renseigné le nom de l'objet que vous échangez :</p>
-              <input type="text" id="objetdemandeur_titre" class="form-control mb-3" placeholder="Exemple: Iphone X" name="objetdemandeur_titre" value="" required="true" disabled>
+            </select>
+          </div>
+          <div class="row" id="details-annonce" style='display:none;padding:10px;'>
+            <%= simple_form_for @echange do |f| %>
+            <%= f.error_notification %>
+            <div class="col-md-12">
               <hr>
-              <p>Veuillez télécharger au moins une image de votre <span class="objet-demande" id="nouvel-objet"></span> : </p>
-              <%= f.error_notification %>
-              <%= f.input :objetdemandeur_photo1, label: false, required: true %>
-              <%= f.input :objetdemandeur_photo2, label: false, required: false %>
-              <%= f.input :objetdemandeur_photo3, label: false, required: false %>
+              <p>Vous avez séléctionnez : <span id="echange-selected-annonce"></span></p>
+              <p>L'objet demandé pour cette échange est : <span class="objet-demande"></span></p>
               <hr>
-              <p>Type d'échange (choisir parmis les types d'échange acceptés l'utilisateur) : </p>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="modal-typeechange-main">
-                <label class="form-check-label" for="modal-typeechange-main">
-                  Remise en main propre
-                </label>
+              <div id='proposer-autre-objet' style="display:none;">
+                <p><b><%= @message_to.pseudo %></b> est ouvert à d'autres propositions d'objets, souhaitez vous proposer un autre objet ?</p>
+                <div class="flex-center">
+                  <button id="btn-non-autre-objet" class="ml-1 mr-1 btn btn-outline-danger btn-block">Non</button>
+                  <button id="btn-oui-autre-objet" class="ml-1 mr-1 btn btn-outline-success btn-block">Oui</button>
+                </div>
               </div>
-              <div class="form-check">
-                <input class="form-check-input" type="checkbox" value="" id="modal-typeechange-poste">
-                <label class="form-check-label" for="modal-typeechange-poste">
-                  Envoie par la poste (requière une empreinte bancaire, échange sécurisé)
-                </label>
+              <div id='objet-contre' style="display:none;">
+                <p>Veuillez renseigné le nom de l'objet que vous échangez :</p>
+                <input type="text" id="objetdemandeur_titre" class="form-control mb-3" placeholder="Exemple: Iphone X" value="" required="true" disabled>
+                <hr>
+                <p>Veuillez télécharger au moins une image de votre <span class="objet-demande" id="nouvel-objet"></span> : </p>
+                <%= f.input :objetdemandeur_photo1, label: false, required: true %>
+                <%= f.input :objetdemandeur_photo2, label: false, required: false %>
+                <%= f.input :objetdemandeur_photo3, label: false, required: false %>
+                <hr>
+                <p>Type d'échange (choisir parmis les types d'échange acceptés l'utilisateur) : </p>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="modal-typeechange-main">
+                  <label class="form-check-label" for="modal-typeechange-main">
+                    Remise en main propre
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="modal-typeechange-poste">
+                  <label class="form-check-label" for="modal-typeechange-poste">
+                    Envoie par la poste (requière une empreinte bancaire, échange sécurisé)
+                  </label>
+                </div>
+                <input type="hidden" name="echange[demandeur_id]" id="modal-demandeurid-value" value="<%= current_user.id %>" required='true'>
+                <input type="hidden" name="echange[proprietaire_id]" id="modal-propietaireid-value" value="<%= @message_to.id %>" required='true'>
+                <input type="hidden" name="echange[annonce_id]" id="modal-annonceid-value" value="" required='true'>
+                <input type="hidden" name="echange[typeechange]" id="modal-typeechange-value" value="" required='true'>
+                <input type="hidden" name="echange[proprietaire_accept]" id="" value="false" required='true'>
+                <input type="hidden" name="echange[objetdemandeur_titre]" id="modal-objetdemandeur-titre" value="" required='true'>
               </div>
-              <input type="hidden" name="demandeur_id" id="modal-demandeurid-value" value="<%= current_user.id %>">
-              <input type="hidden" name="proprietaire_id" id="modal-propietaireid-value" value="<%= @message_to.id %>">
-              <input type="hidden" name="annonce_id" id="modal-annonceid-value" value="">
-              <input type="hidden" name="typeechange" id="modal-typeechange-value" value="">
             </div>
           </div>
         </div>
+        <div class="modal-footer" id="modal-footer" style="display:none;">
+          <%= button_tag type: 'submit', class: "btn btn-outline-success btn-block", id: 'modal-submit', name: 'submit-modal' do %>
+            <i class='fas fa-check'></i> Demander un échange pour cet objet
+          <% end %>
+        </div>
       </div>
-      <div class="modal-footer" id="modal-footer" style="display:none;">
-        <%= button_tag type: 'submit', class: "btn btn-outline-success btn-block", id: 'modal-submit' do %>
-          <i class='fas fa-check'></i> Demander un échange pour cet objet
-        <% end %>
-      </div>
+      <% end %>
     </div>
-    <% end %>
   </div>
 </div>

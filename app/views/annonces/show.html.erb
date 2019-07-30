@@ -48,20 +48,20 @@
   <% if @annonce.autrepropositions %>
     <p> <i class="fas fa-chevron-right"></i> <%= @annonce.user.pseudo %> accepte d'autres propositions pour cet objet.</p>
   <% end %>
-  <hr>
   <% if current_user %>
     <% if @annonce.user != current_user  %>
-      <%= link_to '<i class="fas fa-envelope"></i> Contacter cette personne'.html_safe, conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
-      <%= link_to '<i class="fas fa-exchange-alt"></i> Demander un échange'.html_safe, conversations_path(sender_id: current_user, recipient_id: @annonce.user, action_annonce: 'show_modal_echange'), method: 'post', class: 'btn btn-primary'%>
+      <hr>
+      <%= link_to '<i class="fas fa-envelope"></i> Contacter cette personne'.html_safe, conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-outline-primary'%>
+      <%= link_to '<i class="fas fa-exchange-alt"></i> Demander un échange'.html_safe, conversations_path(sender_id: current_user, recipient_id: @annonce.user, action_annonce: 'show_modal_echange'), method: 'post', class: 'btn btn-outline-primary'%>
     <% else %>
       <div class="alert alert-primary" role="alert">
-        <strong><i class="fas fa-check"></i> Cette annonce vous appartient</strong>
+        <strong style="color:#32B796;"><i class="fas fa-check"></i> Cette annonce vous appartient</strong>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
     <% end %>
   <% else %>
-    <%= link_to '<i class="fas fa-envelope"></i> Contacter cette personne'.html_safe, conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-primary'%>
+    <%= link_to '<i class="fas fa-envelope"></i> Contacter cette personne'.html_safe, conversations_path(sender_id: current_user, recipient_id: @annonce.user), method: 'post', class: 'btn btn-outline-primary'%>
   <% end %>
 </div>

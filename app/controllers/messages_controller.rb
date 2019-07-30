@@ -2,6 +2,7 @@ class MessagesController < ApplicationController
   before_action :conversation_instance
 
   def index
+    @echange = Echange.new
     user1 = User.find(@conversation.sender_id)
     user2 = User.find(@conversation.recipient_id)
     @message_to = current_user == user1 ? user2 : user1
