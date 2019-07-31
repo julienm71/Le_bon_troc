@@ -1,7 +1,8 @@
-User.destroy_all
+Echange.destroy_all
 Annonce.destroy_all
 Message.destroy_all
 Conversation.destroy_all
+User.destroy_all
 
 puts "--> Database erased."
 puts "--> Database reconstruction in progress..."
@@ -75,10 +76,28 @@ echangetest = Echange.new(
   annonce_id: 1,
   typeechange: 0,
   objetdemandeur_titre: 'HTC One Plus 6T',
-  status: 'en_attente'
+  status: 'en_attente',
+  conflit: true,
+  raison_conflit: '',
+  status_conflit: 'aucun_conflit'
 )
 echangetest.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
 echangetest.save!
+
+echangetest2 = Echange.new(
+  demandeur_id: 2,
+  proprietaire_id: 1,
+  proprietaire_accept: false,
+  annonce_id: 2,
+  typeechange: 0,
+  objetdemandeur_titre: 'Samsung S9',
+  status: 'en_conflit',
+  conflit: true,
+  raison_conflit: '',
+  status_conflit: 'en_attente_de_traitement_admin_conflit'
+)
+echangetest2.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+echangetest2.save!
 
 puts "--> Annonce test created!"
 puts "--> Echange test created!"
