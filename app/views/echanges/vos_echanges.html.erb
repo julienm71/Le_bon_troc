@@ -14,7 +14,7 @@
       </div>
     </div>
     <div class="col-md-9">
-      <div class="tab-content border-vos-echanges" id="v-pills-tabContent">
+      <div class="tab-content panel-vos-echanges panel-vos-echanges border-vos-echanges" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="tab-en-attente" role="tabpanel" aria-labelledby="v-pills-home-tab">
           <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en attente dacceptation par l'utilisateur</p>
           <hr class='echange-tab-title'>
@@ -113,7 +113,7 @@
       </div>
     </div>
     <div class="col-md-9">
-      <div class="tab-content border-vos-echanges" id="v-pills-tabContent">
+      <div class="tab-content panel-vos-echanges border-vos-echanges" id="v-pills-tabContent">
         <div class="tab-pane fade show active" id="tab-autre-en-attente" role="tabpanel" aria-labelledby="v-pills-home-tab">
           <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en attente de votre acceptation</p>
           <hr class='echange-tab-title'>
@@ -122,7 +122,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <a class="btn btn-outline-secondary mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
-                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.user_echange_annonce.titre %></b> contre <b><%= echange.objetdemandeur_titre  %></b> avec <b><%= echange.user_echange.pseudo %></b>
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
@@ -142,7 +142,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <a class="btn btn-outline-warning mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
-                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.user_echange_annonce.titre %></b> contre <b><%= echange.objetdemandeur_titre  %></b> avec <b><%= echange.user_echange.pseudo %></b>
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
@@ -162,7 +162,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <a class="btn btn-outline-success mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
-                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.user_echange_annonce.titre %></b> contre <b><%= echange.objetdemandeur_titre  %></b> avec <b><%= echange.user_echange.pseudo %></b>
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
@@ -182,7 +182,7 @@
               <div class="row">
                 <div class="col-md-12">
                   <a class="btn btn-outline-danger mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
-                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.objetdemandeur_titre  %></b> contre <b><%= echange.user_echange_annonce.titre %></b> avec <b><%= echange.user_echange.pseudo %></b>
+                    <i class="fas fa-exchange-alt"></i> Echange de votre <b><%= echange.user_echange_annonce.titre %></b> contre <b><%= echange.objetdemandeur_titre  %></b> avec <b><%= echange.user_echange.pseudo %></b>
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">

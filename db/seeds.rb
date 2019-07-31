@@ -68,5 +68,18 @@ annoncetest.remote_photo2_url = "https://res.cloudinary.com/dbhchqzna/image/uplo
 annoncetest.remote_photo3_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
 annoncetest.save!
 
+echangetest = Echange.new(
+  demandeur_id: 1,
+  proprietaire_id: 2,
+  proprietaire_accept: false,
+  annonce_id: 1,
+  typeechange: 0,
+  objetdemandeur_titre: 'HTC One Plus 6T',
+  status: 'en_attente'
+)
+echangetest.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+echangetest.save!
+
 puts "--> Annonce test created!"
+puts "--> Eachange test created!"
 puts "--> Admin user created!"
