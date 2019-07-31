@@ -5,8 +5,8 @@ before_action :authenticate_admin!
     @current_nav = "Dashboard"
     @nb_users = User.all.count
     @nb_annonces = Annonce.all.count
-    @nb_conflits = '0'
-    @nb_echanges = '0'
+    @nb_conflits = Echange.where(conflit: true, status_conflit: 'en_conflit')
+    @nb_echanges = Echange.all.count
   end
 
   private
