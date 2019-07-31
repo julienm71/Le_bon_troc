@@ -59,7 +59,7 @@ class EchangesController < ApplicationController
       echange.user_echange = user_echange
     end
     if @echanges_demande_user.empty? && @echanges_demande_autre_user.empty?
-      flash[:alert] = "Vous n'avez aucun échange en cours ou échange que vous avez demandé.".html_safe
+      flash[:alert] = "Vous n'avez aucun échange.".html_safe
     end
   end
 

@@ -85,10 +85,10 @@ echangetest.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhch
 echangetest.save!
 
 echangetest2 = Echange.new(
-  demandeur_id: 2,
-  proprietaire_id: 1,
+  demandeur_id: 1,
+  proprietaire_id: 2,
   proprietaire_accept: false,
-  annonce_id: 2,
+  annonce_id: 1,
   typeechange: 0,
   objetdemandeur_titre: 'Samsung S9',
   status: 'en_conflit',

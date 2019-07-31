@@ -79,7 +79,7 @@
           <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en conflit</p>
           <hr class='echange-tab-title'>
           <% @echanges_demande_user.each do |echange| %>
-            <% if echange.status == 'en_conflits' %>
+            <% if echange.status == 'en_conflit' %>
               <div class="row">
                 <div class="col-md-12">
                   <a class="btn btn-outline-danger mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
