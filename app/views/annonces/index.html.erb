@@ -22,14 +22,13 @@
       <% @annonces.each do |annonce| %>
         <a href="<%= annonce_path(annonce) %>">
           <div class="product">
-            <img src="<%= annonce.photo %>" alt="img" class="product-image d-none d-md-block">
+            <!-- <img src="<%= annonce.photo %>" alt="img" class="product-image d-none d-md-block"> -->
+            <%= cl_image_tag annonce.photo, alt: "Image", crop: :scale, class: 'product-image d-none d-md-block'%>
             <div class='product-body'>
               <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
               <p><%= annonce.description.first(20) %>...</p>
               <br />
-              <% if annonce.autrepropositions %>
-              <p><a>Cette personne est libre à d'autre propositions</a></p>
-              <% end %>
+              <p <% if !annonce.autrepropositions %>style="display:none;"<% end %>><a>Cette personne est libre à d'autre propositions</a></p>
             </div>
             <ul class="list-inline product-controls product-controls-hidden hidden-sm d-none d-md-block">
               <!-- <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li> -->

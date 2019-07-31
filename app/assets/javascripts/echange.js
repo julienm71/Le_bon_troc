@@ -21,8 +21,8 @@ $('select#select-annonce').on('change', function() {
       if(data.autrepropositions === true){
         $('#proposer-autre-objet').show();
       } else {
-        $('#objetdemandeur_titre').val($('span.objet-demande').text());
-        $('#objetdemandeur_titre').text($('span.objet-demande').text());
+        $('#objetdemandeur_titre').empty().val($('span.objet-demande').text());
+        $('#objetdemandeur_titre').empty().text($('span.objet-demande').text());
         $('#objet-contre').show();
       }
       $('#details-annonce').show(200);
@@ -47,8 +47,8 @@ $('#btn-oui-autre-objet').on('click', function() {
 
 $('#btn-non-autre-objet').on('click', function() {
   $('#proposer-autre-objet').fadeOut(200);
-  $('#objetdemandeur_titre').val($('span.objet-demande').text());
-  $('#objetdemandeur_titre').text($('span.objet-demande').text());
+  $('#objetdemandeur_titre').empty().val($('span.objet-demande').text());
+  $('#objetdemandeur_titre').empty().text($('span.objet-demande').text());
   $('#objet-contre').fadeIn(300);
 });
 
@@ -83,7 +83,7 @@ $('#modal-typeechange-poste').on('change', function() {
 
 function check_all_fields_filled() {
   // console.log($('#modal-objetdemandeur-titre').val());
-  // console.log($('#modal-objetdemandeur-photo1').val());
+  // console.log($('#modal-objetdemandeur-desc-value').val());
   // console.log($('#modal-demandeurid-value').val());
   // console.log($('#modal-annonceid-value').val());
   // console.log($('#modal-proprietaireid-value').val());
@@ -93,7 +93,8 @@ function check_all_fields_filled() {
     && $('#modal-demandeurid-value').val()!=""
     && $('#modal-annonceid-value').val()!=""
     && $('#modal-proprietaireid-value').val()!=""
-    && $('#modal-typeechange-value').val()!="") {
+    && $('#modal-typeechange-value').val()!=""
+    && $('#modal-objetdemandeur-desc-value').val()!="") {
       $('div#modal-footer').fadeIn(300);
   }
 }

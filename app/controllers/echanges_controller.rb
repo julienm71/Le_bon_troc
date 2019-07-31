@@ -90,7 +90,8 @@ class EchangesController < ApplicationController
                                     :objetdemandeur_photo1,
                                     :objetdemandeur_photo2,
                                     :objetdemandeur_photo3,
-                                    :objetdemandeur_titre
+                                    :objetdemandeur_titre,
+                                    :objetdemandeur_desc
                                   )
   end
 end

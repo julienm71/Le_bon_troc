@@ -121,13 +121,16 @@
                 </div>
               </div>
               <div id='objet-contre' style="display:none;">
-                <p>Veuillez renseigné le nom de l'objet que vous échangez :</p>
+                <p>Veuillez renseigner le nom de l'objet que vous échangez :</p>
                 <input type="text" id="objetdemandeur_titre" class="form-control mb-3" placeholder="Exemple: Iphone X" value="" required="true" disabled>
                 <hr>
                 <p>Veuillez télécharger au moins une image de votre <span class="objet-demande" id="nouvel-objet"></span> : </p>
                 <%= f.input :objetdemandeur_photo1, label: false, required: true %>
                 <%= f.input :objetdemandeur_photo2, label: false, required: false %>
                 <%= f.input :objetdemandeur_photo3, label: false, required: false %>
+                <hr>
+                <p>Veuillez renseigner une description détaillé de votre objet :</p>
+                <%= f.input :objetdemandeur_desc, as: :text, label: false, required: true, id: 'modal-objetdemandeur-desc-value' %>
                 <hr>
                 <p>Type d'échange (choisir parmis les types d'échange acceptés l'utilisateur) : </p>
                 <div class="form-check">

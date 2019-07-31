@@ -27,7 +27,29 @@
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                      <p><b>Status :</b> <i class="far fa-clock"></i> En attente d'acceptation de <b><%= echange.user_echange.pseudo %></b></p>
+                      <hr class='echange-tab-title'>
+                      <div class="row flex">
+                        <div class="col-md-4 img-echange">
+                          <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                        </div>
+                        <div class="col-md-8 details-echange">
+                        <p><b>Proposition :</b> En échange de son <b><%= echange.user_echange_annonce.titre %></b> vous avez proposé à <b><%= echange.user_echange.pseudo %></b> votre <b><%= echange.objetdemandeur_titre %></b></p>
+                        <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="echange-actions flex">
+                        <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_echange), title: 'Envoyer un message', method: 'post', class: 'btn btn-outline-primary' do %>
+                          <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to annonce_path(echange.user_echange_annonce), title: "Voir l'annonce", class: 'btn btn-outline-success' do %>
+                            <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to echange_path(echange), method: :delete, title: "Supprimer l'échange", data: { confirm: "Etes vous sur de vouloir supprimer cet échange ?" }, class: 'btn btn-outline-danger' do %>
+                            <i class="fas fa-times"></i> Annuler cette proposition
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -47,7 +69,32 @@
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                      <p><b>Status :</b> <span class='text-warning'><b><%= echange.user_echange.pseudo %></b> à accepté votre demande d'échange, vous pouvez procéder à l'échange</span></p>
+                      <%= link_to echange_path(echange), title: 'Echange finit', class: 'btn btn-outline-success' do %>
+                          <i class="fas fa-check-circle"></i> J'ai reçu l'objet de <b><%= echange.user_echange.pseudo %></b>, l'échange est finit
+                      <% end %>
+                      <hr>
+                      <div class="row flex">
+                        <div class="col-md-4 img-echange">
+                          <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                        </div>
+                        <div class="col-md-8 details-echange">
+                        <p><b>Proposition :</b> En échange de son <b><%= echange.user_echange_annonce.titre %></b> vous avez proposé à <b><%= echange.user_echange.pseudo %></b> votre <b><%= echange.objetdemandeur_titre %></b></p>
+                        <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="echange-actions flex">
+                        <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_echange), title: 'Envoyer un message', method: 'post', class: 'btn btn-outline-primary' do %>
+                          <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to annonce_path(echange.user_echange_annonce), title: "Voir l'annonce", class: 'btn btn-outline-success' do %>
+                            <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to echange_path(echange), method: :delete, title: "Supprimer l'échange", data: { confirm: "Etes vous sur de vouloir supprimer cet échange ?" }, class: 'btn btn-outline-danger' do %>
+                            <i class="fas fa-times"></i> Annuler cette proposition
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -67,7 +114,29 @@
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                      <p><b>Status :</b> <span class='text-success'><i class="fas fa-check"></i> Votre échange avec <b><%= echange.user_echange.pseudo %></b> est finit</span></p>
+                      <%= link_to echange_path(echange), title: 'Echange finit', class: 'btn btn-outline-danger' do %>
+                          <i class="fas fa-exclamation-triangle"></i> Signaler un problème
+                      <% end %>
+                      <hr>
+                      <div class="row flex">
+                        <div class="col-md-4 img-echange">
+                          <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                        </div>
+                        <div class="col-md-8 details-echange">
+                        <p><b>Proposition :</b> En échange de son <b><%= echange.user_echange_annonce.titre %></b> vous avez proposé à <b><%= echange.user_echange.pseudo %></b> votre <b><%= echange.objetdemandeur_titre %></b></p>
+                        <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="echange-actions flex">
+                        <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_echange), title: 'Envoyer un message', method: 'post', class: 'btn btn-outline-primary' do %>
+                          <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to annonce_path(echange.user_echange_annonce), title: "Voir l'annonce", class: 'btn btn-outline-success' do %>
+                            <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -87,7 +156,26 @@
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                      <p><b>Status :</b> <span class='text-danger'><i class="fas fa-exclamation-triangle"></i> En conflit avec <b><%= echange.user_echange.pseudo %></b></span></p>
+                      <hr class='echange-tab-title'>
+                      <div class="row flex">
+                        <div class="col-md-4 img-echange">
+                          <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                        </div>
+                        <div class="col-md-8 details-echange">
+                        <p><b>Proposition :</b> En échange de son <b><%= echange.user_echange_annonce.titre %></b> vous avez proposé à <b><%= echange.user_echange.pseudo %></b> votre <b><%= echange.objetdemandeur_titre %></b></p>
+                        <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="echange-actions flex">
+                        <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_echange), title: 'Envoyer un message', method: 'post', class: 'btn btn-outline-primary' do %>
+                          <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to annonce_path(echange.user_echange_annonce), title: "Voir l'annonce", class: 'btn btn-outline-success' do %>
+                            <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -126,7 +214,34 @@
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                      <p><b>Status :</b> <i class="far fa-clock"></i> En attente d'acceptation de votre part</p>
+                      <div class="echange-actions flex">
+                        <%= link_to annonce_path(echange.user_echange_annonce), title: "Accepter l'échange", class: 'btn btn-outline-success' do %>
+                            <i class="fas fa-check"></i> Accepter l'échange
+                        <% end %>
+                        <%= link_to annonce_path(echange.user_echange_annonce), title: "Refuser l'échange", class: 'btn btn-outline-danger' do %>
+                            <i class="fas fa-times"></i> Refuser l'échange
+                        <% end %>
+                      </div>
+                      <hr>
+                      <div class="row flex">
+                        <div class="col-md-8 details-echange">
+                        <p><b>Proposition :</b> En échange de votre <b><%= echange.user_echange_annonce.titre %></b>, <b><%= echange.user_echange.pseudo %></b> vous propose <b><%= echange.objetdemandeur_titre %></b></p>
+                        <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                        </div>
+                        <div class="col-md-4 img-echange">
+                          <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="echange-actions flex">
+                        <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_echange), title: 'Envoyer un message', method: 'post', class: 'btn btn-outline-primary' do %>
+                          <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to annonce_path(echange.annonce_id), title: "Voir votre l'annonce", class: 'btn btn-outline-success' do %>
+                            <i class="fas fa-eye"></i> Voir votre annonce
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -146,7 +261,32 @@
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                      <p><b>Status :</b> <span class='text-warning'>Vous avez accepté la demande d'échange de <b><%= echange.user_echange.pseudo %></b>, vous pouvez procéder à l'échange</span></p>
+                      <%= link_to echange_path(echange), title: 'Echange finit', class: 'btn btn-outline-success' do %>
+                          <i class="fas fa-check-circle"></i> J'ai reçu l'objet de <b><%= echange.user_echange.pseudo %></b>, l'échange est finit
+                      <% end %>
+                      <hr>
+                      <div class="row flex">
+                        <div class="col-md-8 details-echange">
+                        <p><b>Proposition :</b> En échange de votre <b><%= echange.user_echange_annonce.titre %></b>, <b><%= echange.user_echange.pseudo %></b> vous propose <b><%= echange.objetdemandeur_titre %></b></p>
+                        <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                        </div>
+                        <div class="col-md-4 img-echange">
+                          <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="echange-actions flex">
+                        <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_echange), title: 'Envoyer un message', method: 'post', class: 'btn btn-outline-primary' do %>
+                          <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to annonce_path(echange.annonce_id), title: "Voir votre l'annonce", class: 'btn btn-outline-success' do %>
+                            <i class="fas fa-eye"></i> Voir votre annonce
+                        <% end %>
+                        <%= link_to echange_path(echange), method: :delete, title: "Supprimer l'échange", data: { confirm: "Etes vous sur de vouloir supprimer cet échange ?" }, class: 'btn btn-outline-danger' do %>
+                            <i class="fas fa-times"></i> Annuler cet échange
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -166,7 +306,29 @@
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                      <p><b>Status :</b> <span class='text-success'><i class="fas fa-check"></i> Votre échange avec <b><%= echange.user_echange.pseudo %></b> est finit</span></p>
+                      <%= link_to echange_path(echange), title: 'Echange finit', class: 'btn btn-outline-danger' do %>
+                          <i class="fas fa-exclamation-triangle"></i> Signaler un problème
+                      <% end %>
+                      <hr>
+                      <div class="row flex">
+                        <div class="col-md-8 details-echange">
+                        <p><b>Proposition :</b> En échange de votre <b><%= echange.user_echange_annonce.titre %></b>, <b><%= echange.user_echange.pseudo %></b> vous propose <b><%= echange.objetdemandeur_titre %></b></p>
+                        <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                        </div>
+                        <div class="col-md-4 img-echange">
+                          <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="echange-actions flex">
+                        <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_echange), title: 'Envoyer un message', method: 'post', class: 'btn btn-outline-primary' do %>
+                          <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to annonce_path(echange.annonce_id), title: "Voir votre l'annonce", class: 'btn btn-outline-success' do %>
+                            <i class="fas fa-eye"></i> Voir votre annonce
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -178,7 +340,7 @@
           <p class='echange-tab-title'><i class="fas fa-bars"></i> Liste des demandes d'échange en conflit</p>
           <hr class='echange-tab-title'>
           <% @echanges_demande_autre_user.each do |echange| %>
-            <% if echange.status == 'en_conflits' %>
+            <% if echange.status == 'en_conflit' %>
               <div class="row">
                 <div class="col-md-12">
                   <a class="btn btn-outline-danger mb-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
@@ -186,7 +348,26 @@
                   </a>
                   <div class="collapse mb-3" id="echange-<%= echange.id %>">
                     <div class="card card-body">
-                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+                      <p><b>Status :</b> <span class='text-danger'><i class="fas fa-exclamation-triangle"></i> En conflit avec <b><%= echange.user_echange.pseudo %></b></span></p>
+                      <hr class='echange-tab-title'>
+                      <div class="row flex">
+                        <div class="col-md-8 details-echange">
+                        <p><b>Proposition :</b> En échange de votre <b><%= echange.user_echange_annonce.titre %></b>, <b><%= echange.user_echange.pseudo %></b> vous propose <b><%= echange.objetdemandeur_titre %></b></p>
+                        <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                        </div>
+                        <div class="col-md-4 img-echange">
+                          <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                        </div>
+                      </div>
+                      <hr>
+                      <div class="echange-actions flex">
+                        <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_echange), title: 'Envoyer un message', method: 'post', class: 'btn btn-outline-primary' do %>
+                          <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                        <%= link_to annonce_path(echange.user_echange_annonce), title: "Voir l'annonce", class: 'btn btn-outline-success' do %>
+                            <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_echange.pseudo %></b>
+                        <% end %>
+                      </div>
                     </div>
                   </div>
                 </div>

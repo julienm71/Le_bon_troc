@@ -44,7 +44,7 @@ annonceadmin = Annonce.new(
   description: 'Iphone X en parfaite état.',
   raison: 'Je n\'aime pas les Iphone..',
   contre: 'Samsung S9',
-  autrepropositions: true,
+  autrepropositions: false,
   status: 2,
   typeechange: 0,
   user: useradmin,
@@ -76,6 +76,7 @@ echangetest = Echange.new(
   annonce_id: 1,
   typeechange: 0,
   objetdemandeur_titre: 'HTC One Plus 6T',
+  objetdemandeur_desc: 'Description objetdemandeur_desc',
   status: 'en_attente',
   conflit: true,
   raison_conflit: '',
@@ -91,6 +92,7 @@ echangetest2 = Echange.new(
   annonce_id: 1,
   typeechange: 0,
   objetdemandeur_titre: 'Samsung S9',
+  objetdemandeur_desc: 'Description objetdemandeur_desc',
   status: 'en_conflit',
   conflit: true,
   raison_conflit: '',
@@ -99,6 +101,39 @@ echangetest2 = Echange.new(
 echangetest2.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
 echangetest2.save!
 
-puts "--> Annonce test created!"
-puts "--> Echange test created!"
+echangetest3 = Echange.new(
+  demandeur_id: 1,
+  proprietaire_id: 2,
+  proprietaire_accept: false,
+  annonce_id: 1,
+  typeechange: 0,
+  objetdemandeur_titre: 'Samsung S9',
+  objetdemandeur_desc: 'Description objetdemandeur_desc',
+  status: 'en_cours',
+  conflit: false,
+  raison_conflit: '',
+  status_conflit: ''
+)
+echangetest3.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+echangetest3.save!
+
+echangetest4 = Echange.new(
+  demandeur_id: 1,
+  proprietaire_id: 2,
+  proprietaire_accept: false,
+  annonce_id: 1,
+  typeechange: 0,
+  objetdemandeur_titre: 'Samsung S9',
+  objetdemandeur_desc: 'Description objetdemandeur_desc',
+  status: 'finit',
+  conflit: false,
+  raison_conflit: '',
+  status_conflit: ''
+)
+echangetest4.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+echangetest4.save!
+
+puts "--> Annonces test created!"
+puts "--> Echanges test created!"
+puts "--> Test user created!"
 puts "--> Admin user created!"

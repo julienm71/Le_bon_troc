@@ -1,4 +1,5 @@
 class Echange < ApplicationRecord
+  attr_accessor :user_echange_demandeur
   attr_accessor :user_echange
   attr_accessor :user_echange_annonce
   # has_many :users, dependent: :destroy
@@ -11,5 +12,6 @@ class Echange < ApplicationRecord
             :typeechange,
             :objetdemandeur_photo1,
             :objetdemandeur_titre,
+            :objetdemandeur_desc,
             presence: true
 end
