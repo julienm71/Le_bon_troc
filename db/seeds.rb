@@ -81,5 +81,5 @@ echangetest.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhch
 echangetest.save!
 
 puts "--> Annonce test created!"
-puts "--> Eachange test created!"
+puts "--> Echange test created!"
 puts "--> Admin user created!"
