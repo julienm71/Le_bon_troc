@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_07_31_140008) do
+ActiveRecord::Schema.define(version: 2019_08_01_095415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 2019_07_31_140008) do
     t.string "raison_conflit"
     t.string "status_conflit", default: "aucun_conflit"
     t.string "objetdemandeur_desc", default: ""
+    t.boolean "status_proprietaire", default: false
+    t.boolean "status_demandeur", default: false
   end
 
   create_table "messages", force: :cascade do |t|

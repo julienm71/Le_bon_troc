@@ -77,61 +77,127 @@ echangetest = Echange.new(
   typeechange: 0,
   objetdemandeur_titre: 'HTC One Plus 6T',
   objetdemandeur_desc: 'Description objetdemandeur_desc',
-  status: 'en_attente',
-  conflit: true,
+  status: 'echange_en_attente',
+  conflit: false,
+  status_proprietaire: false,
+  status_demandeur:  false,
   raison_conflit: '',
   status_conflit: 'aucun_conflit'
 )
 echangetest.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
 echangetest.save!
 
-echangetest2 = Echange.new(
-  demandeur_id: 1,
-  proprietaire_id: 2,
-  proprietaire_accept: false,
-  annonce_id: 1,
-  typeechange: 0,
-  objetdemandeur_titre: 'Samsung S9',
-  objetdemandeur_desc: 'Description objetdemandeur_desc',
-  status: 'en_conflit',
-  conflit: true,
-  raison_conflit: '',
-  status_conflit: 'en_attente_de_traitement_admin_conflit'
-)
-echangetest2.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
-echangetest2.save!
+# echangetest2 = Echange.new(
+#   demandeur_id: 1,
+#   proprietaire_id: 2,
+#   proprietaire_accept: false,
+#   annonce_id: 1,
+#   typeechange: 0,
+#   objetdemandeur_titre: 'Samsung S9',
+#   objetdemandeur_desc: 'Description objetdemandeur_desc',
+#   status: 'en_conflit',
+#   conflit: true,
+#   raison_conflit: '',
+#   status_conflit: 'en_attente_de_traitement_admin_conflit'
+# )
+# echangetest2.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+# echangetest2.save!
 
-echangetest3 = Echange.new(
-  demandeur_id: 1,
-  proprietaire_id: 2,
-  proprietaire_accept: false,
-  annonce_id: 1,
-  typeechange: 0,
-  objetdemandeur_titre: 'Samsung S9',
-  objetdemandeur_desc: 'Description objetdemandeur_desc',
-  status: 'en_cours',
-  conflit: false,
-  raison_conflit: '',
-  status_conflit: ''
-)
-echangetest3.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
-echangetest3.save!
+# echangetest3 = Echange.new(
+#   demandeur_id: 1,
+#   proprietaire_id: 2,
+#   proprietaire_accept: false,
+#   annonce_id: 1,
+#   typeechange: 0,
+#   objetdemandeur_titre: 'Samsung S9',
+#   objetdemandeur_desc: 'Description objetdemandeur_desc',
+#   status: 'en_cours',
+#   conflit: false,
+#   raison_conflit: '',
+#   status_conflit: ''
+# )
+# echangetest3.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+# echangetest3.save!
 
-echangetest4 = Echange.new(
-  demandeur_id: 1,
-  proprietaire_id: 2,
-  proprietaire_accept: false,
-  annonce_id: 1,
-  typeechange: 0,
-  objetdemandeur_titre: 'Samsung S9',
-  objetdemandeur_desc: 'Description objetdemandeur_desc',
-  status: 'finit',
-  conflit: false,
-  raison_conflit: '',
-  status_conflit: ''
-)
-echangetest4.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
-echangetest4.save!
+# echangetest4 = Echange.new(
+#   demandeur_id: 1,
+#   proprietaire_id: 2,
+#   proprietaire_accept: false,
+#   annonce_id: 1,
+#   typeechange: 0,
+#   objetdemandeur_titre: 'Samsung S9',
+#   objetdemandeur_desc: 'Description objetdemandeur_desc',
+#   status: 'finit',
+#   conflit: false,
+#   raison_conflit: '',
+#   status_conflit: ''
+# )
+# echangetest4.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+# echangetest4.save!
+
+# echangetest5 = Echange.new(
+#   demandeur_id: 1,
+#   proprietaire_id: 1,
+#   proprietaire_accept: false,
+#   annonce_id: 1,
+#   typeechange: 0,
+#   objetdemandeur_titre: 'HTC One Plus 6T',
+#   objetdemandeur_desc: 'Description objetdemandeur_desc',
+#   status: 'en_attente',
+#   conflit: true,
+#   raison_conflit: '',
+#   status_conflit: 'aucun_conflit'
+# )
+# echangetest5.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+# echangetest5.save!
+
+# echangetest6 = Echange.new(
+#   demandeur_id: 1,
+#   proprietaire_id: 1,
+#   proprietaire_accept: false,
+#   annonce_id: 1,
+#   typeechange: 0,
+#   objetdemandeur_titre: 'Samsung S9',
+#   objetdemandeur_desc: 'Description objetdemandeur_desc',
+#   status: 'en_conflit',
+#   conflit: true,
+#   raison_conflit: '',
+#   status_conflit: 'en_attente_de_traitement_admin_conflit'
+# )
+# echangetest6.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+# echangetest6.save!
+
+# echangetest7 = Echange.new(
+#   demandeur_id: 1,
+#   proprietaire_id: 1,
+#   proprietaire_accept: false,
+#   annonce_id: 1,
+#   typeechange: 0,
+#   objetdemandeur_titre: 'Samsung S9',
+#   objetdemandeur_desc: 'Description objetdemandeur_desc',
+#   status: 'en_cours',
+#   conflit: false,
+#   raison_conflit: '',
+#   status_conflit: ''
+# )
+# echangetest7.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+# echangetest7.save!
+
+# echangetest8 = Echange.new(
+#   demandeur_id: 1,
+#   proprietaire_id: 1,
+#   proprietaire_accept: false,
+#   annonce_id: 1,
+#   typeechange: 0,
+#   objetdemandeur_titre: 'Samsung S9',
+#   objetdemandeur_desc: 'Description objetdemandeur_desc',
+#   status: 'finit',
+#   conflit: false,
+#   raison_conflit: '',
+#   status_conflit: ''
+# )
+# echangetest8.remote_objetdemandeur_photo1_url = "https://res.cloudinary.com/dbhchqzna/image/upload/v1547168438/iphone-xr-home.jpg"
+# echangetest8.save!
 
 puts "--> Annonces test created!"
 puts "--> Echanges test created!"
