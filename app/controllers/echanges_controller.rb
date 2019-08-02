@@ -31,18 +31,17 @@ class EchangesController < ApplicationController
     @echange = Echange.find(params[:id])
     user_echange = User.find(@echange.demandeur_id)
     @echange.update!(update_params)
-    pseudo_user_echange = "<b>#{user_echange.pseudo}</b>".html_safe
     redirect_to vos_echanges_path
     if params[:status].present?
       if params[:status] == 'echange_en_cours'
       params[:status] == 'echange_en_cours' ? status_s = 'accepté' : status_s = 'refusé'
       status_s == 'accepté' ? notice_s = :notice : notice_s = :alert
-      flash[notice_s] = "Vous avez #{status_s} l'échange de #{pseudo_user_echange}.".html_safe
+      flash[notice_s] = "Vous avez #{status_s} l'échange de #{user_echange.pseudo}.".html_safe
       elsif params[:status] == 'echange_annuler'
-        flash[:notice] = "Vous avez annulé l'échange avec #{pseudo_user_echange}.".html_safe
+        flash[:notice] = "Vous avez annulé l'échange avec #{user_echange.pseudo}.".html_safe
       end
     elsif params[:status_propietaire].present? || params[:status_demandeur].present?
-      flash[:notice] = "Vous avez confirmé avoir reçu l'objet de #{pseudo_user_echange}, vous devez attendre qu'il confirme la récéption de votre objet.".html_safe
+      flash[:notice] = "Vous avez confirmé avoir reçu l'objet de #{user_echange.pseudo}, vous devez attendre qu'il confirme la récéption de votre objet.".html_safe
     end
   end
 

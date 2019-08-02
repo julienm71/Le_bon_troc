@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :annonces, only: [:index, :update, :destroy, :edit]
     resources :users, only: [:index, :update, :destroy, :edit, :new, :create]
-    # resources :conflits, only: [:index, :update, :destroy, :edit, :new, :create]
+    resources :echanges, only: [:index, :update, :destroy]
     get 'users/modal_settings', to: 'users#modal_settings'
   end
   resources :conversations do

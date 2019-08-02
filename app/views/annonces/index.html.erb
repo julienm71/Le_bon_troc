@@ -3,8 +3,8 @@
     <h3><%= @annonces_page_title %> (<%= @annonces_count %>)</h3>
 <!--     <div class="filters-annonces">
       <div class="btn-group" style="margin-top:25px;">
-        <button type="button" class="btn btn-primary">Filtres</button>
-        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <button type="button" class="btn btn-outline-primary">Filtres</button>
+        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <span class="caret"></span>
           <span class="sr-only">Toggle Dropdown</span>
         </button>
@@ -50,7 +50,7 @@
             <div class="card-body">
               <h5 class="card-title"><%= annonce.titre %> contre <%= annonce.contre %></h5>
               <p class="card-text"><%= annonce.description.first(20) %>...</p>
-              <%= link_to "Voir l'annonce", annonce_path(annonce), class: 'btn btn-block btn-primary', style: 'position:absolute;bottom:10px;left:14px;width:90%;' %>
+              <%= link_to "Voir l'annonce", annonce_path(annonce), class: 'btn btn-block btn-outline-primary', style: 'position:absolute;bottom:10px;left:14px;width:90%;' %>
             </div>
           </div>
         <% end %>

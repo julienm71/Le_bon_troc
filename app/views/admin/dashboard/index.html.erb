@@ -3,25 +3,39 @@
   <div class="card card-dashboard" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title"><i class="fas fa-users"></i> Nombre d'utilisateurs</h5>
-      <p class="card-text"><%= @nb_users %> utilisateurs</p>
+      <p class="card-text"><%= @nb_users_utilisateurs %> utilisateurs</p>
+      <p class="card-text"><%= @nb_users_administrateurs %> administrateurs</p>
+      <p class="card-text"><b>Nombre total d'utilisateurs : <%= @nb_users_total %></b></p>
+      <%= link_to admin_users_path, title: "Gérer les utilisateurs", class: 'btn-cards-stick-bottom btn btn-outline-primary' do %>
+      <i class="fas fa-cog"></i> Gérer les utilisateurs
+      <% end %>
     </div>
   </div>
   <div class="card card-dashboard" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title"><i class="fa fa-list"></i> Nombre d'annonces</h5>
-      <p class="card-text"><%= @nb_annonces %> annonces</p>
-    </div>
-  </div>
-  <div class="card card-dashboard" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title"><i class="fas fa-times"></i> Nombre de conflits</h5>
-      <p class="card-text"><%= @nb_conflits %> conflits</p>
+      <p class="card-text"><%= @nb_annonces_en_attente %> annonces en attente</p>
+      <p class="card-text"><%= @nb_annonces_accepte %> annonces accepté</p>
+      <p class="card-text"><%= @nb_annonces_refuse %> annonces refusé</p>
+      <p class="card-text"><b>Nombre total d'annonces : <%= @nb_annonces_total %></b></p>
+      <%= link_to admin_annonces_path, title: "Gérer les annonces", class: 'btn-cards-stick-bottom btn  btn-outline-primary' do %>
+      <i class="fas fa-cog"></i> Gérer les annonces
+      <% end %>
     </div>
   </div>
   <div class="card card-dashboard" style="width: 18rem;">
     <div class="card-body">
       <h5 class="card-title"><i class="fas fa-exchange-alt"></i> Nombre d'échanges</h5>
-      <p class="card-text"><%= @nb_echanges %> échanges en cours</p>
+      <p class="card-text"><%= @nb_echanges_en_attente %> échanges en attente</p>
+      <p class="card-text"><%= @nb_echanges_en_cours %> échanges en cours</p>
+      <p class="card-text"><%= @nb_echanges_refuser %> échanges refusé</p>
+      <p class="card-text"><%= @nb_echanges_annuler %> échanges annulé</p>
+      <p class="card-text"><%= @nb_echanges_finit %> échanges finit</p>
+      <p class="card-text"><%= @nb_echanges_en_conflit %> échanges en conflit</p>
+      <p class="card-text"><b>Nombre total d'échanges : <%= @nb_echanges_total %></b></p>
+      <%= link_to admin_echanges_path, title: "Gérer les échanges", class: 'btn-cards-stick-bottom btn  btn-outline-primary' do %>
+      <i class="fas fa-cog"></i> Gérer les échanges
+      <% end %>
     </div>
   </div>
 </div>

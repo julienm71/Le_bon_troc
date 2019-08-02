@@ -9,7 +9,7 @@
       <%= f.input :remember_me,label: 'Se souvenir de moi', as: :boolean if devise_mapping.rememberable? %>
     </div>
     <div class="form-actions">
-      <%= f.button :submit, "Connexion", class: "btn btn-success", style: "width:100%; margin-bottom:15px;" %>
+      <%= f.button :submit, "Connexion", class: "btn btn-outline-success", style: "width:100%; margin-bottom:15px;" %>
     </div>
     <%= render "devise/shared/links" %>
     <% end %>

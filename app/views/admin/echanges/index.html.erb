@@ -1,0 +1,383 @@
+<%= render 'admin/shared/navbar-admin' %>
+<div class="container">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-attente-tab" data-toggle="tab" href="#nav-attente" role="tab" aria-controls="nav-attente" aria-selected="false">Echanges en attente</a>
+      <a class="nav-item nav-link" id="nav-en-cours-tab" data-toggle="tab" href="#nav-en-cours" role="tab" aria-controls="nav-en-cours" aria-selected="false">Echanges en cours</a>
+      <a class="nav-item nav-link" id="nav-refuse-tab" data-toggle="tab" href="#nav-refuser" role="tab" aria-controls="nav-refuser" aria-selected="false">Echanges refusé</a>
+      <a class="nav-item nav-link" id="nav-annuler-tab" data-toggle="tab" href="#nav-annuler" role="tab" aria-controls="nav-annuler" aria-selected="false">Echanges annuler</a>
+      <a class="nav-item nav-link" id="nav-finit-tab" data-toggle="tab" href="#nav-finit" role="tab" aria-controls="nav-finit" aria-selected="false">Echanges finit</a>
+      <a class="nav-item nav-link" id="nav-en-conflit-tab" data-toggle="tab" href="#nav-en-conflit" role="tab" aria-controls="nav-en-conflit" aria-selected="false">Echanges en conflit</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-attente" role="tabpanel" aria-labelledby="nav-attente-tab">
+      <% @echanges_en_attente.each do |echange| %>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="btn btn-outline-secondary my-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+            <div class="flex-around">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Demandeur : <b><%= echange.user_demandeur.pseudo %></b> (objet: <b><%= echange.objetdemandeur_titre %></b>)</span>
+              <span>Proprietaire : <b><%= echange.user_proprietaire.pseudo %></b> (objet: <b><%= echange.annonce.titre %></b>)</span>
+              <span>Echange id : <b><%= echange.id %></b></span>
+              <span>Annonce id : <b><%= echange.annonce.id %></b></span>
+              <!-- <span>Status slug : <b><%= echange.status %></b></span> -->
+            </div>
+            </a>
+            <div class="collapse mb-3" id="echange-<%= echange.id %>">
+              <div class="card card-body">
+                <div class="flex">
+                <p><b>Proposition du demandeur :</b></p>
+                <%= link_to annonce_path(echange.annonce), title: "Voir l'annonce", class: 'btn mb-3 btn-outline-success' do %>
+                  <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_proprietaire.pseudo %></b>
+                <% end %>
+                </div>
+                <hr class='echange-tab-title'>
+                <div class="row flex">
+                  <div class="col-md-4 img-echange">
+                    <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                  </div>
+                  <div class="col-md-8 details-echange">
+                    <p><b>Proposition :</b> Le demandeur (<b><%= echange.user_demandeur.pseudo %></b>) propose <b><%= echange.objetdemandeur_titre %></b> contre <b><%= echange.annonce.titre %></b> du proprietaire (<b><%= echange.user_proprietaire.pseudo %></b>)</p>
+                    <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="echange-actions flex">
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_demandeur), title: 'Envoyer un message', method: 'post', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_proprietaire), title: 'Envoyer un message', method: 'post', class: 'btn mb-3  btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to edit_admin_user_path(echange.user_demandeur), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to edit_admin_user_path(echange.user_proprietaire), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to echange_path(echange, {status: 'echange_annuler', proprietaire_accept: false}), method: :patch, title: "Annuler l'échange", data: { confirm: "Etes vous sur de vouloir annuler cet échange ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-times"></i> Annuler cet échange
+                  <% end %>
+
+                  <%= link_to echange_path(echange), method: :delete, title: "Supprimer l'échange", data: { confirm: "Etes vous sur de vouloir Supprimer cet échange pour toujours ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-trash-alt"></i> Supprimer cet échange
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="nav-en-cours" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <% @echanges_en_cours.each do |echange| %>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="btn btn-outline-warning my-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+            <div class="flex-around">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Demandeur : <b><%= echange.user_demandeur.pseudo %></b> (objet: <b><%= echange.objetdemandeur_titre %></b>)</span>
+              <span>Proprietaire : <b><%= echange.user_proprietaire.pseudo %></b> (objet: <b><%= echange.annonce.titre %></b>)</span>
+              <span>Echange id : <b><%= echange.id %></b></span>
+              <span>Annonce id : <b><%= echange.annonce.id %></b></span>
+              <!-- <span>Status slug : <b><%= echange.status %></b></span> -->
+            </div>
+            </a>
+            <div class="collapse mb-3" id="echange-<%= echange.id %>">
+              <div class="card card-body">
+                <div class="flex">
+                <p><b>Proposition du demandeur :</b></p>
+                <%= link_to annonce_path(echange.annonce), title: "Voir l'annonce", class: 'btn mb-3 btn-outline-success' do %>
+                  <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_proprietaire.pseudo %></b>
+                <% end %>
+                </div>
+                <hr class='echange-tab-title'>
+                <div class="row flex">
+                  <div class="col-md-4 img-echange">
+                    <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                  </div>
+                  <div class="col-md-8 details-echange">
+                    <p><b>Proposition :</b> Le demandeur (<b><%= echange.user_demandeur.pseudo %></b>) propose <b><%= echange.objetdemandeur_titre %></b> contre <b><%= echange.annonce.titre %></b> du proprietaire (<b><%= echange.user_proprietaire.pseudo %></b>)</p>
+                    <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="echange-actions flex">
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_demandeur), title: 'Envoyer un message', method: 'post', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_proprietaire), title: 'Envoyer un message', method: 'post', class: 'btn mb-3  btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to edit_admin_user_path(echange.user_demandeur), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to edit_admin_user_path(echange.user_proprietaire), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to echange_path(echange, {status: 'echange_annuler', proprietaire_accept: false}), method: :patch, title: "Annuler l'échange", data: { confirm: "Etes vous sur de vouloir annuler cet échange ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-times"></i> Annuler cet échange
+                  <% end %>
+
+                  <%= link_to echange_path(echange), method: :delete, title: "Supprimer l'échange", data: { confirm: "Etes vous sur de vouloir Supprimer cet échange pour toujours ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-trash-alt"></i> Supprimer cet échange
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="nav-refuser" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <% @echanges_refuser.each do |echange| %>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="btn btn-outline-danger my-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+            <div class="flex-around">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Demandeur : <b><%= echange.user_demandeur.pseudo %></b> (objet: <b><%= echange.objetdemandeur_titre %></b>)</span>
+              <span>Proprietaire : <b><%= echange.user_proprietaire.pseudo %></b> (objet: <b><%= echange.annonce.titre %></b>)</span>
+              <span>Echange id : <b><%= echange.id %></b></span>
+              <span>Annonce id : <b><%= echange.annonce.id %></b></span>
+              <!-- <span>Status slug : <b><%= echange.status %></b></span> -->
+            </div>
+            </a>
+            <div class="collapse mb-3" id="echange-<%= echange.id %>">
+              <div class="card card-body">
+                <div class="flex">
+                <p><b>Proposition du demandeur :</b></p>
+                <%= link_to annonce_path(echange.annonce), title: "Voir l'annonce", class: 'btn mb-3 btn-outline-success' do %>
+                  <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_proprietaire.pseudo %></b>
+                <% end %>
+                </div>
+                <hr class='echange-tab-title'>
+                <div class="row flex">
+                  <div class="col-md-4 img-echange">
+                    <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                  </div>
+                  <div class="col-md-8 details-echange">
+                    <p><b>Proposition :</b> Le demandeur (<b><%= echange.user_demandeur.pseudo %></b>) propose <b><%= echange.objetdemandeur_titre %></b> contre <b><%= echange.annonce.titre %></b> du proprietaire (<b><%= echange.user_proprietaire.pseudo %></b>)</p>
+                    <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="echange-actions flex">
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_demandeur), title: 'Envoyer un message', method: 'post', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_proprietaire), title: 'Envoyer un message', method: 'post', class: 'btn mb-3  btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to edit_admin_user_path(echange.user_demandeur), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to edit_admin_user_path(echange.user_proprietaire), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to echange_path(echange, {status: 'echange_annuler', proprietaire_accept: false}), method: :patch, title: "Annuler l'échange", data: { confirm: "Etes vous sur de vouloir annuler cet échange ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-times"></i> Annuler cet échange
+                  <% end %>
+
+                  <%= link_to echange_path(echange), method: :delete, title: "Supprimer l'échange", data: { confirm: "Etes vous sur de vouloir Supprimer cet échange pour toujours ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-trash-alt"></i> Supprimer cet échange
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="nav-annuler" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <% @echanges_annuler.each do |echange| %>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="btn btn-outline-danger my-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+            <div class="flex-around">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Demandeur : <b><%= echange.user_demandeur.pseudo %></b> (objet: <b><%= echange.objetdemandeur_titre %></b>)</span>
+              <span>Proprietaire : <b><%= echange.user_proprietaire.pseudo %></b> (objet: <b><%= echange.annonce.titre %></b>)</span>
+              <span>Echange id : <b><%= echange.id %></b></span>
+              <span>Annonce id : <b><%= echange.annonce.id %></b></span>
+              <!-- <span>Status slug : <b><%= echange.status %></b></span> -->
+            </div>
+            </a>
+            <div class="collapse mb-3" id="echange-<%= echange.id %>">
+              <div class="card card-body">
+                <div class="flex">
+                <p><b>Proposition du demandeur :</b></p>
+                <%= link_to annonce_path(echange.annonce), title: "Voir l'annonce", class: 'btn mb-3 btn-outline-success' do %>
+                  <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_proprietaire.pseudo %></b>
+                <% end %>
+                </div>
+                <hr class='echange-tab-title'>
+                <div class="row flex">
+                  <div class="col-md-4 img-echange">
+                    <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                  </div>
+                  <div class="col-md-8 details-echange">
+                    <p><b>Proposition :</b> Le demandeur (<b><%= echange.user_demandeur.pseudo %></b>) propose <b><%= echange.objetdemandeur_titre %></b> contre <b><%= echange.annonce.titre %></b> du proprietaire (<b><%= echange.user_proprietaire.pseudo %></b>)</p>
+                    <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="echange-actions flex">
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_demandeur), title: 'Envoyer un message', method: 'post', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_proprietaire), title: 'Envoyer un message', method: 'post', class: 'btn mb-3  btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to edit_admin_user_path(echange.user_demandeur), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to edit_admin_user_path(echange.user_proprietaire), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to echange_path(echange), method: :delete, title: "Supprimer l'échange", data: { confirm: "Etes vous sur de vouloir Supprimer cet échange pour toujours ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-trash-alt"></i> Supprimer cet échange
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="nav-finit" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <% @echanges_finit.each do |echange| %>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="btn btn-outline-success my-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+            <div class="flex-around">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Demandeur : <b><%= echange.user_demandeur.pseudo %></b> (objet: <b><%= echange.objetdemandeur_titre %></b>)</span>
+              <span>Proprietaire : <b><%= echange.user_proprietaire.pseudo %></b> (objet: <b><%= echange.annonce.titre %></b>)</span>
+              <span>Echange id : <b><%= echange.id %></b></span>
+              <span>Annonce id : <b><%= echange.annonce.id %></b></span>
+              <!-- <span>Status slug : <b><%= echange.status %></b></span> -->
+            </div>
+            </a>
+            <div class="collapse mb-3" id="echange-<%= echange.id %>">
+              <div class="card card-body">
+                <div class="flex">
+                <p><b>Proposition du demandeur :</b></p>
+                <%= link_to annonce_path(echange.annonce), title: "Voir l'annonce", class: 'btn mb-3 btn-outline-success' do %>
+                  <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_proprietaire.pseudo %></b>
+                <% end %>
+                </div>
+                <hr class='echange-tab-title'>
+                <div class="row flex">
+                  <div class="col-md-4 img-echange">
+                    <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                  </div>
+                  <div class="col-md-8 details-echange">
+                    <p><b>Proposition :</b> Le demandeur (<b><%= echange.user_demandeur.pseudo %></b>) propose <b><%= echange.objetdemandeur_titre %></b> contre <b><%= echange.annonce.titre %></b> du proprietaire (<b><%= echange.user_proprietaire.pseudo %></b>)</p>
+                    <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="echange-actions flex">
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_demandeur), title: 'Envoyer un message', method: 'post', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_proprietaire), title: 'Envoyer un message', method: 'post', class: 'btn mb-3  btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to edit_admin_user_path(echange.user_demandeur), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to edit_admin_user_path(echange.user_proprietaire), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to echange_path(echange, {status: 'echange_annuler', proprietaire_accept: false}), method: :patch, title: "Annuler l'échange", data: { confirm: "Etes vous sur de vouloir annuler cet échange ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-times"></i> Annuler cet échange
+                  <% end %>
+
+                  <%= link_to echange_path(echange), method: :delete, title: "Supprimer l'échange", data: { confirm: "Etes vous sur de vouloir Supprimer cet échange pour toujours ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-trash-alt"></i> Supprimer cet échange
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <div class="tab-pane fade" id="nav-en-conflit" role="tabpanel" aria-labelledby="nav-contact-tab">
+      <% @echanges_en_conflit.each do |echange| %>
+        <div class="row">
+          <div class="col-md-12">
+            <a class="btn btn-outline-danger my-3 w-100" data-toggle="collapse" href="#echange-<%= echange.id %>" role="button" aria-expanded="false" aria-controls="collapse">
+            <div class="flex-around">
+              <i class="fas fa-exchange-alt"></i>
+              <span>Demandeur : <b><%= echange.user_demandeur.pseudo %></b> (objet: <b><%= echange.objetdemandeur_titre %></b>)</span>
+              <span>Proprietaire : <b><%= echange.user_proprietaire.pseudo %></b> (objet: <b><%= echange.annonce.titre %></b>)</span>
+              <span>Echange id : <b><%= echange.id %></b></span>
+              <span>Annonce id : <b><%= echange.annonce.id %></b></span>
+              <!-- <span>Status slug : <b><%= echange.status %></b></span> -->
+            </div>
+            </a>
+            <div class="collapse mb-3" id="echange-<%= echange.id %>">
+              <div class="card card-body">
+                <div class="flex">
+                <p><b>Proposition du demandeur :</b></p>
+                <%= link_to annonce_path(echange.annonce), title: "Voir l'annonce", class: 'btn mb-3 btn-outline-success' do %>
+                  <i class="fas fa-eye"></i> Voir l'annonce de <b><%= echange.user_proprietaire.pseudo %></b>
+                <% end %>
+                </div>
+                <hr class='echange-tab-title'>
+                <div class="row flex">
+                  <div class="col-md-4 img-echange">
+                    <%= cl_image_tag echange.objetdemandeur_photo1, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                  </div>
+                  <div class="col-md-8 details-echange">
+                    <p><b>Proposition :</b> Le demandeur (<b><%= echange.user_demandeur.pseudo %></b>) propose <b><%= echange.objetdemandeur_titre %></b> contre <b><%= echange.annonce.titre %></b> du proprietaire (<b><%= echange.user_proprietaire.pseudo %></b>)</p>
+                    <p><b>Description de l'objet :</b> <%= echange.objetdemandeur_desc %></p>
+                  </div>
+                </div>
+                <hr>
+                <div class="echange-actions flex">
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_demandeur), title: 'Envoyer un message', method: 'post', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to conversations_path(sender_id: current_user, recipient_id: echange.user_proprietaire), title: 'Envoyer un message', method: 'post', class: 'btn mb-3  btn-outline-primary' do %>
+                  <i class="fas fa-paper-plane"></i> Envoyer un message à <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to edit_admin_user_path(echange.user_demandeur), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_demandeur.pseudo %></b>
+                  <% end %>
+                  <%= link_to edit_admin_user_path(echange.user_proprietaire), title: 'Envoyer un message', class: 'btn mb-3 btn-outline-primary' do %>
+                  <i class="fas fa-eye"></i> Voir le profil de <b><%= echange.user_proprietaire.pseudo %></b>
+                  <% end %>
+
+                  <%= link_to echange_path(echange, {status: 'echange_annuler', proprietaire_accept: false}), method: :patch, title: "Annuler l'échange", data: { confirm: "Etes vous sur de vouloir annuler cet échange ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-times"></i> Annuler cet échange
+                  <% end %>
+
+                  <%= link_to echange_path(echange), method: :delete, title: "Supprimer l'échange", data: { confirm: "Etes vous sur de vouloir Supprimer cet échange pour toujours ?" }, class: 'btn mb-3 btn-outline-danger' do %>
+                  <i class="fas fa-trash-alt"></i> Supprimer cet échange
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

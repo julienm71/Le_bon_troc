@@ -13,7 +13,7 @@
               <%= f.input :localisation, :include_blank => 'Sélectionnez une région',collection: {'Toute la France' => 'France','Alsace' => 'Alsace', 'Aquitaine' => 'Aquitaine', 'Auvergne' => 'Auvergne', 'Basse Normandie' => 'Basse Normandie', 'Bourgogne' => 'Bourgogne', 'Bretagne' => 'Bretagne', 'Centre' => 'Centre', 'Champagne-Ardenne' => 'Champagne-Ardenne', 'Corse' => 'Corse', 'Franche-Comté' => 'Franche-Comté', 'Haute Normandie' => 'Haute Normandie', 'Ile-de-France' => 'Ile-de-France', 'Languedoc-Rousillon' => 'Languedoc-Rousillon', 'Limousin' => 'Limousin', 'Lorraine' => 'Lorraine', 'Midi-Pyrénées' => 'Midi-Pyrénées', 'Nord-Pas-de-Calais' => 'Nord-Pas-de-Calais', 'Pays de la Loire' => 'Pays de la Loire', 'Picardie' => 'Picardie', 'Poitou-Charentes' => 'Poitou-Charentes', 'Provences-Alpe-Cote-Azur' => 'Provences-Alpe-Cote-Azur', 'Rhone-Alpes' => 'Rhone-Alpes', 'Régions outre mer' => 'Région outre mer', 'Guadeloupe' => 'Guadeloupe', 'Martinique' => 'Martinique', 'Guyane' => 'Guyane', 'La Réunion' => 'La Réunion', 'Mayotte' => 'Mayotte'}, label:false, required: true, class: 'form-control' %>
               <p>Type de recherche:</p>
               <%= f.input :where, :include_blank => 'Sélectionnez un type de recherche', collection: {"Voir les annonces pour ce produit" => 1, "Voir les offres pour un produit que vous voulez échanger" => 2}, label:false, required: true, class: 'form-control' %>
-              <%= f.button :submit, "Rechercher", class: 'btn btn-primary btn-lg btn-search-home form-control', style: 'width:100%'%>
+              <%= f.button :submit, "Rechercher", class: 'btn btn-outline-primary btn-lg btn-search-home form-control', style: 'width:100%'%>
             <% end %>
             <!-- <a href="#description" title="En savoir plus"><i class="far fa-arrow-alt-circle-down"></i></a> -->
           </div>
@@ -32,7 +32,7 @@
       <%= f.input :localisation, :include_blank => 'Sélectionnez une région',collection: {'Toute la France' => 'France','Alsace' => 'Alsace', 'Aquitaine' => 'Aquitaine', 'Auvergne' => 'Auvergne', 'Basse Normandie' => 'Basse Normandie', 'Bourgogne' => 'Bourgogne', 'Bretagne' => 'Bretagne', 'Centre' => 'Centre', 'Champagne-Ardenne' => 'Champagne-Ardenne', 'Corse' => 'Corse', 'Franche-Comté' => 'Franche-Comté', 'Haute Normandie' => 'Haute Normandie', 'Ile-de-France' => 'Ile-de-France', 'Languedoc-Rousillon' => 'Languedoc-Rousillon', 'Limousin' => 'Limousin', 'Lorraine' => 'Lorraine', 'Midi-Pyrénées' => 'Midi-Pyrénées', 'Nord-Pas-de-Calais' => 'Nord-Pas-de-Calais', 'Pays de la Loire' => 'Pays de la Loire', 'Picardie' => 'Picardie', 'Poitou-Charentes' => 'Poitou-Charentes', 'Provences-Alpe-Cote-Azur' => 'Provences-Alpe-Cote-Azur', 'Rhone-Alpes' => 'Rhone-Alpes', 'Régions outre mer' => 'Région outre mer', 'Guadeloupe' => 'Guadeloupe', 'Martinique' => 'Martinique', 'Guyane' => 'Guyane', 'La Réunion' => 'La Réunion', 'Mayotte' => 'Mayotte'}, label:false, required: true, class: 'form-control' %>
       <p>Type de recherche:</p>
       <%= f.input :where, :include_blank => 'Sélectionnez un type de recherche', collection: {"Voir les annonces pour ce produit" => 1, "Voir les offres pour un produit que vous voulez échanger" => 2}, label:false, required: true, class: 'form-control' %>
-      <%= f.button :submit, "Rechercher", class: 'btn btn-primary btn-lg btn-search-home form-control', style: 'width:100%'%>
+      <%= f.button :submit, "Rechercher", class: 'btn btn-outline-primary btn-lg btn-search-home form-control', style: 'width:100%'%>
     <% end %>
     <div class="text-center"><a href="#description" title="En savoir plus"><i class="fas fa-chevron-down"></i></a></div>
   </div>
@@ -49,7 +49,7 @@
           <div class="card-body">
             <h5 class="card-title"><%= annonce.titre.first(20) %> contre <%= annonce.contre.first(20) %></h5>
             <p class="card-text"><%= annonce.description.first(20) %>...</p>
-            <%= link_to "Voir l'annonce", annonce_path(annonce), class: 'btn btn-primary btn-block' %>
+            <%= link_to "Voir l'annonce", annonce_path(annonce), class: 'btn btn-outline-primary btn-block' %>
           </div>
         </div>
       <% end %>

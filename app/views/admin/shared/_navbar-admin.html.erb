@@ -5,7 +5,7 @@
     <%= link_to '<i class="fas fa-tachometer-alt"></i> Dashboard'.html_safe, admin_dashboard_index_path, class: "nav-item nav-link", id: 'admin_dashboard'%>
     <%= link_to '<i class="fas fa-users"></i> Utilisateurs'.html_safe, admin_users_path, class: "nav-item nav-link", id: 'admin_users' %>
     <%= link_to '<i class="fas fa-newspaper"></i> Annonces'.html_safe, admin_annonces_path, class: "nav-item nav-link", id: 'admin_annonces' %>
-    <%= link_to '<i class="fas fa-exclamation-triangle"></i> Conflits'.html_safe, admin_dashboard_index_path, class: "nav-item nav-link", id: 'admin_conflits' %>
+    <%= link_to '<i class="fas fa-exchange-alt"></i> Echanges'.html_safe, admin_echanges_path, class: "nav-item nav-link", id: 'admin_echanges' %>
     <%= link_to '<i class="fab fa-stripe-s"></i> Stripe'.html_safe, admin_dashboard_index_path, class: "nav-item nav-link", id: 'admin_stripe' %>
   </nav>
 <hr class="my-3">
@@ -22,8 +22,8 @@
     case "Annonces":
       document.getElementById('admin_annonces').classList.add('active');
       break;
-    case "Conflits":
-      document.getElementById('admin_conflits').classList.add('active');
+    case "Echanges":
+      document.getElementById('admin_echanges').classList.add('active');
       break;
     case "Stripe":
       document.getElementById('admin_stripe').classList.add('active');
