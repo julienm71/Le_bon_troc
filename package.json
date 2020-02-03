@@ -2,14 +2,19 @@
   "name": "Le_bon_troc",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "3.5",
+    "@rails/webpacker": "^4.2.2",
     "bootstrap": "3",
     "jquery": "^3.4.0",
+    "node-sass": "^4.13.1",
     "popper.js": "^1.15.0",
     "sweetalert": "^2.1.2",
     "typed.js": "^2.0.9"
   },
   "devDependencies": {
-    "webpack-dev-server": "2.11.2"
+    "@babel/core": "^7.8.4",
+    "@babel/preset-env": "^7.8.4",
+    "babel-loader": "^8.0.6",
+    "webpack": "^4.41.5",
+    "webpack-dev-server": "^3.10.2"
   }
 }
