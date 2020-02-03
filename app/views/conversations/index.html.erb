@@ -1,20 +1,24 @@
 <div class="container">
   <h3>Vos conversations</h3>
   <hr>
-  <div class="flex-evenly">
-    <% @conversations.each do |conversation| %>
-    <div class="cards my-2">
-      <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://cdn.pixabay.com/photo/2017/05/31/23/44/email-marketing-2362038_960_720.png)">
-      <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
-        <% if conversation.sender_id == current_user.id %>
-          <% recipient = User.find(conversation.recipient_id) %>
-        <% else %>
-          <% recipient = User.find(conversation.sender_id) %>
+  <% if @conversations.blank? %>
+    <p>Vous n'avez aucune conversation.</p>
+  <% else %>
+    <div class="flex-evenly">
+      <% @conversations.each do |conversation| %>
+      <div class="cards my-2">
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(https://cdn.pixabay.com/photo/2017/05/31/23/44/email-marketing-2362038_960_720.png)">
+        <% if conversation.sender_id == current_user.id || conversation.recipient_id == current_user.id %>
+          <% if conversation.sender_id == current_user.id %>
+            <% recipient = User.find(conversation.recipient_id) %>
+          <% else %>
+            <% recipient = User.find(conversation.sender_id) %>
+          <% end %>
+          <%= link_to "Conversation avec #{recipient.pseudo}", conversation_messages_path(conversation)%>
         <% end %>
-        <%= link_to "Conversation avec #{recipient.pseudo}", conversation_messages_path(conversation)%>
-      <% end %>
+        </div>
       </div>
+      <% end %>
     </div>
-    <% end %>
-  </div>
+  <% end %>
 </div>

@@ -1,45 +1,49 @@
 <div class="container">
   <h3>Vos annonces - <%= @current_user.pseudo %></h3>
   <hr>
-  <div class="d-none d-md-block">
-    <% @annonces_user.each do |annonce| %>
-      <div class="product">
-        <div class='product-upvote'>
-        </div>
-        <img src="<%= annonce.photo %>" alt="kudoz" class="product-image hidden-xs">
-        <div class='product-body'>
-          <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
-          <p><%= annonce.description %></p>
-        </div>
-        <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
-          <li><a title="Si votre annonce est en attente cela veux dire qu'elle est en cours de vérification par notre staff et sera bientot disponible sur le site, si votre annonce est refusé et que vous pensez qu'il s'agit d'une erreur merci de contacter une personne du staff.">Status: <%= @status_list[annonce.status] %></a></li>
-          <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li>
-          <li><%= link_to "",  edit_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
-          <li><%= link_to "", annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
-        </ul>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="d-block d-md-none">
-    <div class="flex-cards-home">
-      <% if !@annonces.nil? %>
+  <% if @annonces_user.blank? %>
+    <p>Vous n'avez aucune annonce.</p>
+  <% else %>
+      <div class="d-none d-md-block">
         <% @annonces_user.each do |annonce| %>
-          <div class="card standard-hover-shadow mb-3" style="width: 18rem;">
-            <%= cl_image_tag annonce.photo, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
-            <div class="card-body">
-              <h5 class="card-title"><%= annonce.titre %> contre <%= annonce.contre %></h5>
-              <p class="card-text"><%= annonce.description.first(20) %>...</p>
-              <div class="flex">
-              <%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %>
-              <%= link_to "",  edit_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %>
-              <%= link_to "", annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%>
-              </div>
-              <div class="mt-3 text-center">Status: <strong><%= @status_list[annonce.status] %></strong></div>
+          <div class="product">
+            <div class='product-upvote'>
             </div>
+            <img src="<%= annonce.photo %>" alt="kudoz" class="product-image hidden-xs">
+            <div class='product-body'>
+              <h3><%= annonce.titre %> contre <%= annonce.contre %></h3>
+              <p><%= annonce.description %></p>
+            </div>
+            <ul class="list-inline product-controls product-controls-hidden hidden-sm hidden-xs">
+              <li><a title="Si votre annonce est en attente cela veux dire qu'elle est en cours de vérification par notre staff et sera bientot disponible sur le site, si votre annonce est refusé et que vous pensez qu'il s'agit d'une erreur merci de contacter une personne du staff.">Status: <%= @status_list[annonce.status] %></a></li>
+              <li><%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %></li>
+              <li><%= link_to "",  edit_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %></li>
+              <li><%= link_to "", annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%></li>
+            </ul>
           </div>
         <% end %>
-      <% end %>
+      </div>
+
+      <div class="d-block d-md-none">
+        <div class="flex-cards-home">
+          <% if !@annonces.nil? %>
+            <% @annonces_user.each do |annonce| %>
+              <div class="card standard-hover-shadow mb-3" style="width: 18rem;">
+                <%= cl_image_tag annonce.photo, alt: "Image", class: 'card-img-top', width: 0.35, crop: :scale %>
+                <div class="card-body">
+                  <h5 class="card-title"><%= annonce.titre %> contre <%= annonce.contre %></h5>
+                  <p class="card-text"><%= annonce.description.first(20) %>...</p>
+                  <div class="flex">
+                  <%= link_to "", annonce_path(annonce), title: "Voir l'annonce", :class => "fa fa-eye" %>
+                  <%= link_to "",  edit_annonce_path(annonce), title: "Modifier l'annonce", :class => "fa fa-pencil-alt" %>
+                  <%= link_to "", annonce_path(annonce), method: :delete, title: "Supprimer l'annonce", data: { confirm: "Etes vous sur de vouloir supprimer cette annonce ?" }, :class => "far fa-trash-alt"%>
+                  </div>
+                  <div class="mt-3 text-center">Status: <strong><%= @status_list[annonce.status] %></strong></div>
+                </div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  <% end %>

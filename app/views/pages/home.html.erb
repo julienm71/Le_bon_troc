@@ -36,13 +36,13 @@
       <%= f.button :submit, "Rechercher", class: 'btn btn-outline-primary btn-lg btn-search-home form-control', style: 'width:100%'%>
     <% end %>
     <div class="text-center"><a href="#description" title="En savoir plus"><i class="fas fa-chevron-down"></i></a></div>
-  </div>
 </div>
+<div class="container description-home">
+  <h3>Les dernières annonces</h3>
+  <hr>
 <% if @annonces.nil? %>
+<p>Aucune annonces.</p>
 <% else %>
-  <div class="container description-home">
-    <h3>Les dernières annonces</h3>
-    <hr>
     <div class="flex-cards-home">
       <% @annonces.each do |annonce| %>
         <div class="card card-spacing-home standard-hover-shadow">
@@ -54,8 +54,8 @@
           </div>
         </div>
       <% end %>
-    </div>
 <% end %>
+</div>
 
   <h3 id="description">Echanger avec Lebontroc</h3>
   <hr>
