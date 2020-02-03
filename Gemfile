@@ -24,7 +24,7 @@ gem 'mini_magick'
 gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
-gem 'webpacker'
+gem 'webpacker', '>= 4.0.x'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

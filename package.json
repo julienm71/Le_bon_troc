@@ -2,7 +2,7 @@
   "name": "Le_bon_troc",
   "private": true,
   "dependencies": {
-    "@rails/webpacker": "^4.2.2",
+    "@rails/webpacker": "4.2.2",
     "bootstrap": "3",
     "jquery": "^3.4.0",
     "node-sass": "^4.13.1",
