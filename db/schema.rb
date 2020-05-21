@@ -21,12 +21,12 @@ ActiveRecord::Schema.define(version: 2019_08_01_095415) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "status", default: 0
+    t.integer "status"
     t.string "description"
-    t.boolean "autrepropositions", default: false
+    t.boolean "autrepropositions"
     t.string "raison"
     t.string "photo"
-    t.integer "typeechange", default: 0
+    t.integer "typeechange"
     t.string "photo2"
     t.string "photo3"
     t.index ["user_id"], name: "index_annonces_on_user_id"
@@ -77,26 +77,20 @@ ActiveRecord::Schema.define(version: 2019_08_01_095415) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "pseudo"
     t.string "first_name"
     t.string "last_name"
     t.string "phone"
-    t.boolean "admin", default: false
-    t.string "pseudo"
     t.string "ville"
     t.integer "cp"
-    t.string "pays", default: "France"
+    t.string "pays"
     t.string "adresse"
     t.string "region"
+    t.boolean "admin", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "annonces", "users"
 end
