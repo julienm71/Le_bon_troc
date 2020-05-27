@@ -12,7 +12,7 @@ gem "actionview", ">= 6.0.2.2"
 
 gem 'bundler'
 gem 'autoprefixer-rails'
-gem 'bootstrap-sass'
+gem 'bootstrap'
 gem 'money-rails'
 gem 'sass-rails', '~> 6.0'
 gem 'stripe'
