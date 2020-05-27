@@ -1,31 +1,31 @@
 source 'https://rubygems.org'
 ruby '2.6.6'
 
-gem 'bootsnap', require: false
+gem 'bootsnap', '~> 1.4', '>= 1.4.6', require: false
 gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma', ">= 4.3.3"
-gem 'rails', '6.0.0'
+gem 'rails', '6.0.2.2'
 gem 'redis'
 gem "actionview", ">= 6.0.2.2"
 
-gem 'bundler', '~> 2.1.4'
+gem 'bundler'
 gem 'autoprefixer-rails'
-gem 'bootstrap', '~> 4.4.1'
+gem 'bootstrap-sass'
 gem 'money-rails'
+gem 'sass-rails', '~> 6.0'
 gem 'stripe'
-gem 'font-awesome-sass', '~> 5.5.0'
+gem 'font-awesome-sass'
 gem 'rails-assets-font-awesome-animation', source: 'https://rails-assets.org'
-gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
-gem 'actionmailer', '~> 6.0.0'
-gem 'cloudinary', '~> 1.11', '>= 1.11.1'
-gem 'carrierwave', '~> 1.3', '>= 1.3.1'
+gem 'jquery-rails'
+gem 'actionmailer'
+gem 'cloudinary'
+gem 'carrierwave'
 gem 'mini_magick'
-gem 'sassc-rails'
 gem 'simple_form'
 gem 'uglifier'
-gem 'webpacker', '>= 4.0.x'
+gem 'webpacker'
 
 group :development do
   gem 'web-console', '>= 3.3.0'

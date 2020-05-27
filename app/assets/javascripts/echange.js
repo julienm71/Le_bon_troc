@@ -1,6 +1,7 @@
 var default_modal_body = $("#modal-echange").clone();
 function trigger_modal_echange() {
   $("#modal-echange").modal('show');
+  $("#modal-echange").addClass('show');
 }
 
 $('select#select-annonce').on('change', function() {
