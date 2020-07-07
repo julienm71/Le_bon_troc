@@ -6,7 +6,7 @@ gem 'devise'
 gem 'jbuilder', '~> 2.0'
 gem 'pg', '~> 0.21'
 gem 'puma', ">= 4.3.3"
-gem 'rails', '6.0.2.2'
+gem 'rails', '6.0.3.2'
 gem 'redis'
 gem "actionview", ">= 6.0.2.2"
 
